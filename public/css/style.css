@@ -1,0 +1,93 @@
+body {
+	background-image: url(/img/cream_pixels.png);
+	background-repeat: repeat;
+}
+
+h1, h2 {
+	color: #424242;
+	font-family: 'Abel', sans-serif;
+	font-weight: 600;
+	margin-bottom: 10px;
+	margin-top: 25px;
+}
+
+p, ol, ul, dl, td, th, a {
+	font-family: 'Abel', sans-serif;
+	font-size: 1em;
+	line-height: 1.25em;
+	margin-top: 5px;
+	margin-bottom: 15px;
+}
+
+dt {
+	font-weight: 600;
+	margin-bottom: 5px;
+	margin-top: 15px;
+	color: #1da46e;
+}
+
+td {
+	border-bottom: 1px dashed #424242;
+	text-align: center;
+	padding: 5px;
+}
+
+th {
+	width: 45%;
+	border-bottom: 1px dashed #424242;
+	padding: 5px;
+	background-color: #cdffeb;
+}
+
+td.row, th.row {
+	border-right: 1px dashed #424242;
+}
+
+table {
+	border-top: 1px dashed #424242;
+	border-right: 1px dashed #424242;
+	border-left: 1px dashed #424242;
+	margin-top: 20px;
+}
+
+blockquote {
+	font-style: italic;
+	color: #1da46e;
+	font-family: 'Abel', serif;
+	font-weight: 300;
+}
+
+ol {
+	list-style: upper-latin;
+}
+
+ul {
+	list-style: url('/img/custombullet.png');
+}
+
+div#interior {
+	width: 550px;
+	margin: auto;
+}
+
+strong {
+	font-weight: 700;
+}
+
+a:link {
+	color: #1da46e;
+}
+
+a:visited {
+	color: #424242;
+}
+
+a:active {
+	color: orange;
+}
+
+img {
+	border: 1px solid #1da46e;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}

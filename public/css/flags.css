@@ -1,0 +1,201 @@
+h2 {
+	text-align: center;
+	font-family: Verdana, sans-serif;
+}
+
+/*United States*/
+
+#unitedstates {
+	margin: auto;
+	width: 555.75px;
+	height: 292.5px;
+	border: 1px solid black;
+	overflow: hidden;
+	position: relative;
+}
+
+.uswhitestripe {
+	background-color: white;
+	height: 22.5px;
+}
+
+.usredstripe {
+	background-color: #c2153f;
+	height: 22.5px;
+}
+
+.usbluefield {
+	background-color: #031f40;
+	width: 260px;
+	height: 157.5px;
+	float: left;
+	position: relative;
+}
+
+.usstarwrapper {
+	position: absolute;
+	top: 10.75px;
+	left: 12.66px;
+}
+
+.usstarwrapper2 {
+	position: absolute;
+	top: 26.5px;
+	left: 33px;
+}
+
+.usstarwrapper3 {
+	position: absolute;
+	top: 42.25px;
+	left: 12.66px;
+}
+
+.usstarwrapper4 {
+	position: absolute;
+	top: 58px;
+	left: 33px;
+}
+
+.usstarwrapper5 {
+	position: absolute;
+	top: 73.75px;
+	left: 12.66px;
+}
+
+.usstarwrapper6 {
+	position: absolute;
+	top: 89.5px;
+	left: 33px;
+}
+
+.usstarwrapper7 {
+	position: absolute;
+	top: 105.25px;
+	left: 12.66px;
+}
+
+.usstarwrapper8 {
+	position: absolute;
+	top: 121px;
+	left: 33px;
+}
+
+.usstarwrapper9 {
+	position: absolute;
+	top: 136.75px;
+	left: 12.66px;
+}
+
+.star1.second {
+	margin-left: 43.3px;
+}
+
+.star1.third {
+	margin-left: 86.6px;
+}
+
+.star1.fourth {
+	margin-left: 129.9px;
+}
+
+.star1.fifth {
+	margin-left: 173.2px;
+}
+
+.star1.sixth {
+	margin-left: 216.53px;
+}
+
+.star1 {
+	position: absolute;
+	color: white;
+	width: 0;
+	height: 0;
+	border-right: 8px solid transparent;
+	border-left: 10.5px solid transparent;
+	border-bottom: 7px solid white;
+	transform: rotate(35deg);
+}
+
+.star1:before {
+	position: absolute;
+	left: -10.5px;
+	width: 0;
+	height: 0;
+	content: '';
+	border-right: 10px solid transparent;
+	border-left: 8px solid transparent;
+	border-bottom: 7px solid white;
+	transform: rotate(-68.9deg);
+}
+
+.star1:after {
+	position: absolute;
+	top: 1px;
+	right: -7.5px;
+	content: '';
+	width: 0;
+	height: 0;
+	border-left: 9px solid transparent;
+	border-right: 9px solid transparent;
+	border-bottom: 7px solid white;
+	transform: rotate(-145.2deg);
+}
+
+/*End United States flag*/
+
+/*Greece flag*/
+
+#greece {
+	background-color: white;
+	width: 550px;
+	height: 366px;
+	margin: auto;
+	border: 1px solid black;
+}
+
+#gkjack {
+	background-color: #00379e;
+	width: 37%;
+	height: 37%;
+	display: inline-block;
+}
+
+#gkstripewrap {
+	display: inline-block;
+}
+
+.gkbluesq1, .gkbluesq2, .gkbluesq3, .gkbluesq4 {
+	background-color: #00379e;
+	width: 81.32px;
+	height: 81.32px;
+	position: absolute;
+}
+
+.gkbluesq1 {
+	top: 0;
+	left: 0;
+}
+
+.gkbluesq2 {
+	top: 0;
+	right: 0;
+}
+
+.gkbluesq3 {
+	bottom: 0;
+	left: 0;
+}
+
+.gkbluesq4 {
+	bottom: 0;
+	right: 0;
+}
+
+.gkbluestripe, .gkwhitestripe {
+	height: 40.66px;
+}
+
+.gkbluestripe {
+	background-color: #00379e;
+}

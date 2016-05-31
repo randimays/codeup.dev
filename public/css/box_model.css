@@ -1,0 +1,56 @@
+div.box {
+	border: 1px solid black;
+	width: 50px;
+	height: 50px;
+	margin-right: 50px;
+	margin-top: 50px;
+	font-weight: bold;
+	padding: 10px;
+	color: white;
+	position: relative;
+	float: left;
+}
+
+div.box:nth-child(6) {
+	clear: left;
+}
+
+h1 {
+	margin-bottom: 0px;
+}
+
+img.ribbon {
+	position: fixed;
+	top: 0px;
+	right: 0px;
+}
+
+img.arrow {
+	position: absolute;
+	top: -40px;
+	right: -40px;
+}
+
+div.red {
+	background-color: red;
+}
+
+div.orange {
+	background-color: orange;
+}
+
+div.yellow {
+	background-color: yellow;
+}
+
+div.green {
+	background-color: green;
+}
+
+div.blue {
+	background-color: blue;
+}
+
+div.violet {
+	background-color: violet;
+}

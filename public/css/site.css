@@ -1,0 +1,31 @@
+#main-header {
+	color:red;
+}
+
+.fancy-header {
+	color: blue;
+}
+
+.extra-large {
+	font-size: 20px;
+}
+
+/* unvisited link (:link) */
+a:link {
+    color:red;
+}
+
+/* visited link (:visited) */
+a:visited {
+    color:black;
+}
+
+/* mouse hover over link (:hover) */
+a:hover {
+    color:blue;
+}
+
+/* active/selected link (:active) */
+a:active {
+    color:green;
+}

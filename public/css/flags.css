@@ -152,17 +152,25 @@ h2 {
 	height: 366px;
 	margin: auto;
 	border: 1px solid black;
+	position: relative;
 }
 
 #gkjack {
-	background-color: #00379e;
-	width: 37%;
-	height: 37%;
-	display: inline-block;
+	background-color: white;
+	width: 203.3px;
+	height: 203.3px;
+	position: absolute;
+	top: 0;
+	left: 0;
 }
 
-#gkstripewrap {
-	display: inline-block;
+.gkbluestripe, .gkwhitestripe {
+	height: 40.66px;
+	width: 100%;
+}
+
+.gkbluestripe {
+	background-color: #00379e;
 }
 
 .gkbluesq1, .gkbluesq2, .gkbluesq3, .gkbluesq4 {
@@ -190,12 +198,4 @@ h2 {
 .gkbluesq4 {
 	bottom: 0;
 	right: 0;
-}
-
-.gkbluestripe, .gkwhitestripe {
-	height: 40.66px;
-}
-
-.gkbluestripe {
-	background-color: #00379e;
 }

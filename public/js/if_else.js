@@ -1,20 +1,29 @@
 "use strict";
 
+console.log("Grade Problem");
 
 var grade1 = 70;
 var grade2 = 80;
 var grade3 = 95;
 
-if (((grade1 + grade2 + grade3)/3) > 80) {
-	console.log("You're awesome");
+var combinedGrades = grade1 + grade2 + grade3;
+var numberOfGrades = 3;
+var awesomeGrade = 80;
+
+var average = combinedGrades / numberOfGrades;
+
+if (average > awesomeGrade) {
+	console.log("You're awesome!");
 } else {
 	console.log("You need to practice more");
 }
 
+console.log("HEB Problem");
 
 var cameron = 180;
 var ryan = 250;
 var george = 320;
+
 var qualify = 200;
 var discount = .35;
 
@@ -36,6 +45,7 @@ if (george > qualify) {
 	console.log("George must pay original price: $" + george);
 }
 
+console.log("Coin-Flipping Problem");
 
 var flipACoin = Math.floor(Math.random()* 2);
 
@@ -47,4 +57,4 @@ if (flipACoin) {
 	console.log("Buy a car!");
 }
 
-flipACoin ? console.log("Buy a house!") : console.log("Buy a car!");
+console.log((flipACoin) ? "Buy a house!" : "Buy a car!");

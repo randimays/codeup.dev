@@ -1,38 +1,56 @@
 "use strict";
 
-// Don't change the next two lines!
-// These creates two variables for you:
-//     one with the colors of the rainbow
-//     another with a single random color value
 
-var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-var color = colors[Math.floor(Math.random()*colors.length)];
+console.log("Problem 1");
 
-var favorite = 'green'; // TODO: change this to your favorite color from the list
+var grade1 = 70;
+var grade2 = 80;
+var grade3 = 95;
 
-// TODO: Create a block of if/else statements to check for every color except indigo and violet.
-
-if (color === "red") {
-	console.log("Rubies are red.");
-} else if (color === "orange") {
-	console.log("Garnets can be orange.");
-} else if (color === "yellow") {
-	console.log("Topazes can be yellow.");
-} else if (color === "green") {
-	console.log("Emeralds are green.");
-} else if (color === "blue") {
-	console.log("Sapphires are blue.");
+if (((grade1 + grade2 + grade3)/3) > 80) {
+	console.log("You're awesome");
 } else {
-	console.log("I do not know anything by that color.");
+	console.log("You need to practice more");
 }
 
-	(color === favorite) ? console.log(color + " is my favorite color!") : console.log(color + " is not my favorite.");
-	
-// TODO: When a color is encountered log a message that tells the color, and an object of that color.
-//       Example: Blue is the color of the sky.
 
-// TODO: Have a final else that will catch indigo and violet.
-// TODO: In the else, log: I do not know anything by that color.
+console.log("Problem 2");
 
-// TODO: Using the ternary operator, conditionally log a statement that
-//       says whether the random color matches your favorite color.
+var cameron = 180;
+var ryan = 250;
+var george = 320;
+var qualify = 200;
+var discount = .35;
+
+if (cameron > qualify) {
+	console.log("Cameron will save $" + (cameron * discount).toFixed(2) + " of $" + cameron + " for a total of $" + (cameron - (cameron * discount)).toFixed(2));
+} else {
+	console.log("Cameron must pay original price: $" + cameron);
+}
+
+if (ryan > qualify) {
+	console.log("Ryan will save $" + (ryan * discount).toFixed(2) + " of $" + ryan + " for a total of $" + (ryan - (ryan * discount)).toFixed(2));
+} else {
+	console.log("Ryan must pay original price: $" + ryan);
+}
+
+if (george > qualify) {
+	console.log("George will save $" + (george * discount).toFixed(2) + " of $" + george + " for a total of $" + (george - (george * discount)).toFixed(2));
+} else {
+	console.log("George must pay original price: $" + george);
+}
+
+
+console.log("Problem 3");
+
+var flipACoin = Math.floor(Math.random()* 2);
+
+console.log(flipACoin);
+
+if (flipACoin) {
+	console.log("Buy a house!");
+} else {
+	console.log("Buy a car!");
+}
+
+flipACoin ? console.log("Number is 1, buy a house!") : console.log("Number is 0, buy a car!");

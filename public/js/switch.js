@@ -1,36 +1,79 @@
 "use strict";
 
-// Don't change the next two lines!
-// This creates two variables:
-//     one with the colors of the rainbow, and another with a single random
-//     another with a single random color value
-var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
-var color = colors[Math.floor(Math.random()*colors.length)];
+console.log("Walmart Promotion");
 
-switch (color) {
+var luckyNumber = Math.floor(Math.random()* 6);
+var totalPurchase = 60
 
-	case "red":
-		console.log("Apples are red.");
-		break;
-	case "orange":
-		console.log("Tangerines are orange.");
-		break;
-	case "yellow":
-		console.log("Bananas are yellow.");
-		break;
-	case "green":
-		console.log("Pears are green.");
-		break;
-	case "blue":
-		console.log("Blueberries are blue.");
-		break;
+var discountOne = .1
+var discountTwo = .25
+var discountThree = .35
+var discountFour = .5
+var discountFive = 1
+
+
+console.log("Your lucky number is: " + luckyNumber);
+
+switch (luckyNumber) {
+	case 1:
+	console.log("Your total with discount is: $" + (totalPurchase - (totalPurchase*discountOne)));
+	break;
+	case 2:
+	console.log("Your total with discount is: $" + (totalPurchase - (totalPurchase*discountTwo)));
+	break;
+	case 3:
+	console.log("Your total with discount is: $" + (totalPurchase - (totalPurchase*discountThree)));
+	break;
+	case 4:
+	console.log("Your total with discount is: $" + (totalPurchase - (totalPurchase*discountFour)));
+	break;
+	case 5:
+	console.log("Your total with discount is: $" + (totalPurchase - (totalPurchase*discountFive)));
+	break;
 	default:
-		console.log("I do not know anything by that color.");
-	}
-    // TODO: create a case statement that will handle every color except indigo and violet
-    // TODO: when a color is encountered log a message that tells the color, and an object of that color
-    //       example: Blue is the color of the sky.
+	console.log("Sorry, no discount. Your total is: $" + totalPurchase);
+}
 
-    // TODO: create a default case that will catch indigo and violet
-    // TODO: for the default case, log: I do not know anything by that color.
+console.log("Month Problem");
+
+var randomNumber = Math.floor(Math.random()* 12) + 1;
+
+switch (randomNumber){
+	case 1:
+	console.log("Month " + randomNumber + " is January");
+	break;
+	case 2:
+	console.log("Month " + randomNumber + " is February");
+	break;
+	case 3:
+	console.log("Month " + randomNumber + " is March");
+	break;
+	case 4:
+	console.log("Month " + randomNumber + " is April");
+	break;
+	case 5:
+	console.log("Month " + randomNumber + " is May");
+	break;
+	case 6:
+	console.log("Month " + randomNumber + " is June");
+	break;
+	case 7:
+	console.log("Month " + randomNumber + " is July");
+	break;
+	case 8:
+	console.log("Month " + randomNumber + " is August");
+	break;
+	case 9:
+	console.log("Month " + randomNumber + " is September");
+	break;
+	case 10:
+	console.log("Month " + randomNumber + " is October");
+	break;
+	case 11:
+	console.log("Month " + randomNumber + " is November");
+	break;
+	default:
+	console.log("Month " + randomNumber + " is December");
+}
+
 

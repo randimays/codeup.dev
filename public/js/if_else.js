@@ -1,8 +1,6 @@
 "use strict";
 
 
-console.log("Problem 1");
-
 var grade1 = 70;
 var grade2 = 80;
 var grade3 = 95;
@@ -13,8 +11,6 @@ if (((grade1 + grade2 + grade3)/3) > 80) {
 	console.log("You need to practice more");
 }
 
-
-console.log("Problem 2");
 
 var cameron = 180;
 var ryan = 250;
@@ -41,8 +37,6 @@ if (george > qualify) {
 }
 
 
-console.log("Problem 3");
-
 var flipACoin = Math.floor(Math.random()* 2);
 
 console.log(flipACoin);
@@ -53,4 +47,4 @@ if (flipACoin) {
 	console.log("Buy a car!");
 }
 
-flipACoin ? console.log("Number is 1, buy a house!") : console.log("Number is 0, buy a car!");
+flipACoin ? console.log("Buy a house!") : console.log("Buy a car!");

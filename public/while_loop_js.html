@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>While Loop JS</title>
-	</head>
-	<body>
-		<script>
-			var i = 2;
+<head>
+	<title>While Loop Exercise</title>
+</head>
+<body>
+	<script>
 
-			while (i <= 65536) {
-				console.log(i);
-				i = i * 2;
-			}
-		</script>
-	</body>
+		console.log("Ice Cream Problem");
+
+		var allCones = Math.floor(Math.random() * 50) + 50;
+		var conesRemaining = allCones;
+
+		console.log("I have " + allCones + " cones remaining to sell.");
+
+		do {
+			var cones = Math.floor(Math.random() * 5) + 1;
+		if (cones > conesRemaining) {
+			console.log("Cannot sell you " + cones + " , I only have " + conesRemaining);
+		} else {
+			console.log(cones + " cones sold..." + conesRemaining + " remaining.");
+			conesRemaining = conesRemaining - cones; 
+		}
+		} while (conesRemaining >= 1);
+
+		if (conesRemaining == 0) {
+			console.log("Yay! I sold them all!");
+		}
+
+		console.log("Number Loop");
+
+		var i = 1;
+
+		while (i < 65536) {
+			console.log(i*2);
+			i = i * 2;
+		}
+
+	</script>
+
+</body>
 </html>

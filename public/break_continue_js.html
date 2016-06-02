@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Break/Continue JS</title>
-	</head>
-	<body>
-		<script>
+<head>
+	<title>Break/Continue Exercise</title>
+</head>
+<body>
+	<script>
 
-		var random = Math.floor((Math.random()*50)+1);
+		var random;
 
-		console.log("Here is a random odd number: " + random);
+		do {
+			random = Math.floor((Math.random()*50)+1);
+		} while (random % 2 === 0)
+
+		console.log("Random odd number to skip is: " + random);
 
 		for (var i = 1; i < 50; i++) {
 			if (i % 2 === 0) {
 				continue;
 			}
-			if (i === random) {
+			if  (random === i) {
 				console.log("Yikes! Skipping number: " + i);
 			} else {
-				console.log("Here is an odd number: " + i);
-			}
-			if (i > 49) {
-				break;
-			}
-
+			console.log("Here is an odd number: " + i);
+		}   if (i > 49) {
+			break;
 		}
-		</script>
-	</body>
+		}
+
+	</script>
+
+</body>
 </html>

@@ -3,23 +3,22 @@
 // TODO: Ask the user for their name.
 //       Keep asking if an empty input is provided.
 
-var userName = "";
-
-while (userName === "") {
-	userName = prompt("Hi, what is your name?");
-}	
+	do {
+		var userName = prompt("What is your name?");
+	} while ((userName == null) || (userName == ""));
 
 // TODO: Show an alert message that welcomes the user based on their input.
 
-alert("Welcome, " + userName + "!");
+	alert("Hello, " + userName + "!");
 
 // TODO: Ask the user if they like pizza.
+
+	var pizza = confirm("Do you like pizza, " + userName + "?");
+
 //       Based on their answer show a creative alert message.
 
-var response = confirm("Do you like pizza, " + userName + "?");
-
-if (response) {
-	alert("I love pizza too!");
+	if (pizza) {
+		alert("High five, " + userName + "!");
 	} else {
-		alert("That's okay, but you suck.");
+		alert("You are insane, " + userName + "!");
 	}

@@ -10,7 +10,7 @@
     	}
     };
     
-    alert('Hello, ' + person.sayHello());
+    alert('Hello, ' + person.sayHello() + '!');
 
 	console.log(person.sayHello() + ' says hello!');
 

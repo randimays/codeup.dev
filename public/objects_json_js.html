@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JSON Practice</title>
+</head>
+<body>
+
+	<script>
+
+	'use strict';
+
+	// todo:
+	// Create an array of objects that represent books.
+
+	var books = [
+	{
+		"title": "The Hunger Games",
+		"author": {
+			"firstName": "Suzanne",
+			"lastName": "Collins"
+		}
+	},
+	{
+		"title": "Memoirs of a Geisha",
+		"author": {
+			"firstName": "Arthur",
+			"lastName": "Golden"
+		}
+	},
+	{
+		"title": "The Likeness",
+		"author": {
+			"firstName": "Tana",
+			"lastName": "French"
+		}
+	},	
+	{
+		"title": "Cold Truth",
+		"author": {
+			"firstName": "Mariah",
+			"lastName": "Stewart"
+		}
+	},
+	{
+		"title": "Me Talk Pretty One Day",
+		"author": {
+			"firstName": "David",
+			"lastName": "Sedaris"
+		}
+	}];
+
+	// console.log(books);
+
+	books.forEach(function (book, index) {
+    console.log("Book #" + (index + 1));
+    console.log("Title: " + book.title);
+    console.log("Author: " + book.author.firstName + ' ' + book.author.lastName);
+    console.log("---");
+	});
+
+	</script>
+</body>
+</html>

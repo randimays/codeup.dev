@@ -1,6 +1,6 @@
 "use strict";
 
-console.log("Walmart Promotion");
+// console.log("Walmart Promotion");
 
 var luckyNumber = Math.floor(Math.random()* 6);
 var totalPurchase = 60
@@ -12,7 +12,7 @@ var discountFour = .5
 var discountFive = 1
 
 
-console.log("Your lucky number is: " + luckyNumber);
+// console.log("Your lucky number is: " + luckyNumber);
 
 switch (luckyNumber) {
 	case 1:
@@ -34,7 +34,24 @@ switch (luckyNumber) {
 	console.log("Sorry, no discount. Your total is: $" + totalPurchase);
 }
 
-console.log("Month Problem");
+// reworked for practice
+
+(function getDiscount(luckyNumber){
+	var discounts = [0, .1, .25, .35, .50, 1];
+	var originalPrice = 60;
+	var totalDiscount;
+	var newPrice;
+	var luckyNumber = Math.floor(Math.random()* 6);
+
+	for (var i = luckyNumber; i < discounts.length; i++) {
+			totalDiscount = discounts[luckyNumber] * originalPrice;
+			newPrice = originalPrice - totalDiscount;
+		}
+		
+	console.log("You rolled a " + luckyNumber + " and get a $" + totalDiscount + " discount, making your total $" + newPrice + ".");
+})();
+
+// console.log("Month Problem");
 
 var randomNumber = Math.floor(Math.random()* 12) + 1;
 
@@ -76,4 +93,10 @@ switch (randomNumber){
 	console.log("Month " + randomNumber + " is December");
 }
 
+// reworked for practice
 
+(function() {
+	var randomNumber = Math.floor(Math.random() * 12) + 1;
+	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+	console.log('Month # ' + randomNumber + " is " + (months[randomNumber - 1]));
+})();

@@ -5,11 +5,9 @@ console.log("Grade Problem");
 var grade1 = 70;
 var grade2 = 80;
 var grade3 = 95;
-
 var combinedGrades = grade1 + grade2 + grade3;
 var numberOfGrades = 3;
 var awesomeGrade = 80;
-
 var average = combinedGrades / numberOfGrades;
 
 if (average > awesomeGrade) {
@@ -17,6 +15,27 @@ if (average > awesomeGrade) {
 } else {
 	console.log("You need to practice more");
 }
+
+// reworked after arrays for practice
+
+(function() {
+	var grades = [70, 80, 95];
+	var sum = 0;
+	var average;
+	var awesomeGrade = 80;
+	var message;
+
+	for (var i = 0; i < grades.length; i++) {
+		sum = sum + grades[i];
+	}	average = sum / grades.length;
+		if (average >= awesomeGrade) {
+			message = "You're awesome!";
+		} else {
+			message = "You need to practice more.";
+		}
+
+	console.log(message);
+})();
 
 console.log("HEB Problem");
 
@@ -45,11 +64,32 @@ if (george > qualify) {
 	console.log("George must pay original price: $" + george);
 }
 
+// reworked for practice
+
+(function() {
+	var customers = ['cameron', 'ryan', 'george'];
+	var spend = [180, 250, 320];
+	var qualify = 200;
+	var discount = .35;
+	var discountedPrice;
+	var message;
+
+	for (var i = 0; i < spend.length; i++) {
+		if (spend[i] > qualify) {
+			discountedPrice = (spend[i]) * discount;
+			message = customers[i] + " will save $" + ((discount * spend[i]).toFixed(2)) + ". Final price: $" + (spend[i] - discountedPrice).toFixed(2);
+		} else {
+			message = customers[i] + " will spend his original amount of: $" + spend[i];
+		}
+		console.log(message);
+	}
+})();
+
 console.log("Coin-Flipping Problem");
 
 var flipACoin = Math.floor(Math.random()* 2);
 
-console.log(flipACoin);
+console.log("Random number is: " + flipACoin);
 
 if (flipACoin) {
 	console.log("Buy a house!");

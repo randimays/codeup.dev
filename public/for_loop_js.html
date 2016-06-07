@@ -8,7 +8,7 @@
 
 		// question 1
 
-		var message;
+		// var message;
 
 		for (var i = 1; i <= 10; i++) {
 			message = "";
@@ -31,6 +31,7 @@
 			for (var j = 1; j <= times; j++) {
 			message = message + (times % 10);
 			} 
+
 			return message;
 			}
 
@@ -40,50 +41,50 @@
 			}
 		
 
-		// // question 2
+		// question 2
 
-		// var randomNumber = Math.floor(Math.random() * 10) + 1;
+		var randomNumber = Math.floor(Math.random() * 10) + 1;
 
-		// for (var i = 1; i <= 10; i++) {
-		// 	console.log(randomNumber + "x" + i + "=" + (randomNumber * i));
-		// }
+		for (var i = 1; i <= 10; i++) {
+			console.log(randomNumber + "x" + i + "=" + (randomNumber * i));
+		}
 
-		// // changed to a function
+		// changed to a function
 
-		// (function multiplyTables(randomNumber, times) { 
-		// 	var randomNumber = Math.floor(Math.random() * 10) + 1;
-		// 	for (var times = 1; times <= 10; times++) {
-		// 		var message = randomNumber + "x" + times + "=" + (randomNumber*times);
-		// 		console.log(message);
-		// 	}
-		// })();
+		(function multiplyTables(randomNumber, times) { 
+			var randomNumber = Math.floor(Math.random() * 10) + 1;
+			for (var times = 1; times <= 10; times++) {
+				var message = randomNumber + "x" + times + "=" + (randomNumber*times);
+				console.log(message);
+			}
+		})();
 
-		// // simplified
+		// simplified
 
-		// (function () {
-		// 	var randomNumber = Math.floor(Math.random() * 10) + 1;
+		(function () {
+			var randomNumber = Math.floor(Math.random() * 10) + 1;
 
-		// 	for (var i = 1; i <= 10; i++) {
-		// 		console.log(randomNumber + "x" + i + "=" + (randomNumber * i));
-		// 	}
-		// })();
+			for (var i = 1; i <= 10; i++) {
+				console.log(randomNumber + "x" + i + "=" + (randomNumber * i));
+			}
+		})();
 
-		// // question 3
+		// question 3
 		
-		// for (var i = 0; i < 10; i++) {
-		// 	random = Math.floor(Math.random() * 180) + 20;
-		// 	if (random % 2 == 1) {
-		// 		console.log(random + " is odd");
-		// 	} else if (random % 2 == 0) {
-		// 		console.log(random + " is even");
-		// 	}
-		// }
+		for (var i = 0; i < 10; i++) {
+			random = Math.floor(Math.random() * 180) + 20;
+			if (random % 2 == 1) {
+				console.log(random + " is odd");
+			} else if (random % 2 == 0) {
+				console.log(random + " is even");
+			}
+		}
 
-		// // question 4
+		// question 4
 
-		// for (var i = 100; i >=5; i = i - 5) {
-		// 	console.log(i);
-		// }
+		for (var i = 100; i >=5; i = i - 5) {
+			console.log(i);
+		}
 
 		
 	</script>

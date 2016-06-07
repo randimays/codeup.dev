@@ -39,16 +39,27 @@ switch (luckyNumber) {
 (function getDiscount(luckyNumber){
 	var discounts = [0, .1, .25, .35, .50, 1];
 	var originalPrice = 60;
-	var totalDiscount;
-	var newPrice;
 	var luckyNumber = Math.floor(Math.random()* 6);
-
-	for (var i = luckyNumber; i < discounts.length; i++) {
-			totalDiscount = discounts[luckyNumber] * originalPrice;
-			newPrice = originalPrice - totalDiscount;
-		}
-		
+	var totalDiscount = discounts[luckyNumber] * originalPrice;
+	var newPrice = originalPrice - totalDiscount;		
 	console.log("You rolled a " + luckyNumber + " and get a $" + totalDiscount + " discount, making your total $" + newPrice + ".");
+})();
+
+// reworked for practice with objects
+
+(function () {
+	var cost = 60;
+	var luckyNumber = {
+	randomNumber: null,
+	discounts: [0, .1, .25, .35, .5, 1],
+	discountedCost: function(cost){
+		return cost - (cost * this.discounts[this.randomNumber]);
+	}
+	};
+
+	luckyNumber.randomNumber = Math.floor(Math.random() * 6);
+	console.log("You got a " + luckyNumber.randomNumber + " and have to pay $" + (luckyNumber.discountedCost(cost)).toFixed(2) + ".");
+
 })();
 
 // console.log("Month Problem");
@@ -98,5 +109,5 @@ switch (randomNumber){
 (function() {
 	var randomNumber = Math.floor(Math.random() * 12) + 1;
 	var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-	console.log('Month # ' + randomNumber + " is " + (months[randomNumber - 1]));
+	console.log('Month #' + randomNumber + " is " + (months[randomNumber - 1]));
 })();

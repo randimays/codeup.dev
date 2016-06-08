@@ -16,7 +16,7 @@ if (average > awesomeGrade) {
 	console.log("You need to practice more");
 }
 
-reworked after arrays for practice
+// reworked after arrays for practice
 
 (function() {
 	var grades = [70, 80, 95];
@@ -87,10 +87,78 @@ reworked after arrays for practice
 		alert(student.name + ", your overall average is " + averageGrade + " which means you need to study.");
 	}
 
-
 })();
 
 console.log("HEB Problem");
+
+"use strict";
+
+var discount = 0.35;
+var discountMin = 200;
+var moreCustomers;
+
+function displayInfo() {
+	customers.forEach(function(customer) {
+	var finalTotal = (customer.totalNoDiscount()).toFixed(2);
+	var discountTotal = (customer.totalWithDiscount()).toFixed(2);
+
+	console.log(customer.name + " has spent $" + finalTotal + ", and after the discount the total is: $" + discountTotal);
+	});
+}
+
+var customers = [];
+
+function collectInfo() 
+{
+	var customer = {
+		name: null,
+		products: [],
+		totalNoDiscount: function() {
+			var total = 0;
+			this.products.forEach(function(product) { total += product.price;
+			});
+			return total;
+		},
+		totalWithDiscount: function() {
+			var total = this.totalNoDiscount();
+
+			if (total >= discountMin) {
+				total -= (total * discount);
+			}
+
+			return total;
+		}
+	};
+
+customer.name = prompt("Please enter the customer\'s name.");
+
+	do {
+		var product = {
+			name: null,
+			price: 0
+		};
+
+		product.name = prompt("Enter a product.");
+		product.price = parseFloat(prompt("Enter the product cost. Please enter numbers only."));
+		customer.products.push(product);
+
+		var moreProducts = confirm("Do you have more products to enter?");
+	} while (moreProducts);
+
+customers.push(customer);
+
+} 
+
+// end of collectInfo function
+
+do {
+	collectInfo();
+	var moreCustomers = confirm("Do you have more customers to add?");
+} while (moreCustomers);
+
+displayInfo();
+
+// original HEB solution
 
 var cameron = 180;
 var ryan = 250;

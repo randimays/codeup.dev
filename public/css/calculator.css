@@ -6,10 +6,10 @@ body {
 
 #container {
 	width: 285px;
-	height: 355px;
+	height: 410px;
 	margin: auto;
 	background-color: #191818;
-	border: 5px #403b3b solid;
+	border: 3px #403b3b solid;
 }
 
 h1#header {
@@ -17,30 +17,64 @@ h1#header {
 	margin-bottom: 30px;
 }
 
-/*Input CSS*/
-
-#inputs {
-	margin: 7px;
-}
 #inputs>input {
 	background-color: #282c4e;
-	border: 1px #6078bf solid;
-	display: inline-block;
-	float: left;
-	height: 45px;
+	color: white;
+	border: 2px #6078bf solid;
+	height: 60px;
+	padding: 0;
+	margin: 12px 0 8px 0;
 }
 
-#operandLeft, #operandRight {
-	width: 37%;
+#leftOperand, #rightOperand {
+	width: 31.5%;
 }
 
 #operator {
-	width: 20%;
-	margin: 0 7px 0 7px;
+	width: 15%;
 }
 
-/*Button CSS*/
+/* For textarea
+#topinput {
+	background-color: #282c4e;
+	border: 2px #6078bf solid;
+	width: 83%;
+	height: 60px;
+	margin: 10px 3px 4px 3px;
+	resize: none;
+}*/
 
-#groupButtons>.row>a {
-	font-size: 2.5em;
+.exponent {
+	font-size: .65em;
+}
+
+#groupBtns .colorOperators {
+	background-color: #c84c1b;
+	border: 2px #f49232 solid;
+}
+
+#groupBtns .colorClear {
+	background-color: #b12828;
+	border: 2px #f43232 solid;
+}
+
+#groupBtns .binaryColor {
+	background-color: #369f21;
+	border: 2px #26d44b solid;
+}
+
+#groupBtns input, button{
+	color: #d5ddc8;
+	text-align: center;
+	font-size: 2em;
+	text-decoration: none;
+	background-color: #403b3b;
+	display: inline-block;
+	margin-bottom: 8px;
+}
+
+div.row input, button{
+	width: 58.5px;
+	height: 45px;
+	border: 2px #777 solid;
 }

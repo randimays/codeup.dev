@@ -29,16 +29,17 @@
 			var message = '';
 
 			for (var j = 1; j <= times; j++) {
-			message = message + (times % 10);
+				message = message + (number % 10);
 			} 
 
 			return message;
-			}
+		}
 
-			for (var times = 1; times <= 10; times++) {
-			var message = repeatNumber(j, times);
+		for (var number = 1; number <= 10; number++) {
+			var times = number;
+			var message = repeatNumber(number, times);
 			console.log(message);
-			}
+		}
 		
 
 		// question 2

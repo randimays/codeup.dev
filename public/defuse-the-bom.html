@@ -27,9 +27,7 @@
         detonationTimer--;
     }
 
-    var intervalId = setInterval(function() {
-        updateTimer();
-    }, interval);
+    var intervalId = setInterval(updateTimer, interval);
 
     // TODO: When this function runs, it needs to
     // cancel the interval/timeout for updateTimer()

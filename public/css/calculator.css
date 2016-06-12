@@ -5,8 +5,8 @@ body {
 }
 
 #container {
-	width: 285px;
-	height: 410px;
+	width: 450px;
+	height: 345px;
 	margin: auto;
 	background-color: #191818;
 	border: 3px #403b3b solid;
@@ -19,19 +19,21 @@ h1#header {
 
 #inputs>input {
 	background-color: #282c4e;
-	color: white;
+	color: #fff;
+	font-size: 2em;
+	text-align: right;
 	border: 2px #6078bf solid;
-	height: 60px;
-	padding: 0;
+	height: 50px;
+	padding: 10px;
 	margin: 12px 0 8px 0;
 }
 
 #leftOperand, #rightOperand {
-	width: 31.5%;
+	width: 39%;
 }
 
 #operator {
-	width: 15%;
+	width: 8%;
 }
 
 /* For textarea
@@ -58,11 +60,16 @@ h1#header {
 	border: 2px #f43232 solid;
 }
 
-#groupBtns .binaryColor {
+#groupBtns .equalsColor {
 	background-color: #369f21;
 	border: 2px #26d44b solid;
 }
 
+#groupBtns .posnegColor {
+	background-color: #6078bf;
+	border: 2px #7e86f2 solid;
+
+}
 #groupBtns input, button{
 	color: #d5ddc8;
 	text-align: center;
@@ -74,7 +81,7 @@ h1#header {
 }
 
 div.row input, button{
-	width: 58.5px;
+	width: 100px;
 	height: 45px;
 	border: 2px #777 solid;
 }

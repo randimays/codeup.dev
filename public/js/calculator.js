@@ -1,12 +1,12 @@
 "use strict";
 
 var operatorButtonsArray = document.getElementsByClassName("operator-btn");
-var operatorCenter = document.getElementById("operator");
-var operandLeft = document.getElementById("leftOperand");
-var operandRight = document.getElementById("rightOperand");
+var centerBox = document.getElementById("operator");
+var leftBox = document.getElementById("leftOperand");
+var rightBox = document.getElementById("rightOperand");
+var leftMaxLength = leftBox.getAttribute("maxlength");
+var rightMaxLength = rightBox.getAttribute("maxlength");
 var decimalButton = document.getElementById("decimalbtn");
-var leftMaxLength = operandLeft.getAttribute("maxlength");
-var rightMaxLength = operandRight.getAttribute("maxlength");
 var posNegButton = document.getElementById("posnegbtn");
 
 function pressNumberButtons (event) {
@@ -31,90 +31,96 @@ function numberPushToTop () {
 	for (var i = 0; i < operatorButtonsArray.length; i++) {
 		operatorButtonsArray[i].removeAttribute("disabled");
 	}
-	if (operatorCenter.value === "") {
-		if (operandLeft.value.length >= leftMaxLength) {
-			operandLeft.value = ((parseFloat(operandLeft.value)).toExponential(0)); 
-			operandLeft.value += parseFloat(this.value);
+	if (centerBox.value === "") {
+		if (leftBox.value.length >= leftMaxLength) {
+			leftBox.value = ((parseFloat(leftBox.value)).toExponential(0)); 
+			leftBox.value += parseFloat(this.value);
 		} else {
-			operandLeft.value += this.value;
+			leftBox.value += this.value;
 		}
 	} else {
-		if (operandRight.value.length >= rightMaxLength) {
-			operandRight.value = ((parseFloat(operandRight.value)).toExponential(0));
-			operandRight.value += parseFloat(this.value);
+		if (rightBox.value.length >= rightMaxLength) {
+			rightBox.value = ((parseFloat(rightBox.value)).toExponential(0));
+			rightBox.value += parseFloat(this.value);
 		} else
-			operandRight.value += this.value;
+			rightBox.value += this.value;
 	}
 	posNegButton.disabled = false;
+	(document.getElementById("exponentbtn")).disabled = false;
+	(document.getElementById("sqrtbtn")).disabled = false;
 }
 
 posNegButton.addEventListener ("click", toggleNumberSign);
 
 function decimalPushToTop () {
-	if (operatorCenter.value == "") {
-		operandLeft.value = parseInt(operandLeft.value) + decimalButton.value; 
-	} else {
-		if (operandRight.value == "") {
-			operandRight.value = "0" + decimalButton.value;
+	if (centerBox.value == "") {
+		if (leftBox.value == "") {
+			leftBox.value = "0" + decimalButton.value;
 		} else {
-			operandRight.value = parseInt(operandRight.value) + decimalButton.value;
+			leftBox.value = parseInt(leftBox.value) + decimalButton.value; 
+		}
+	} else {
+		if (rightBox.value == "") {
+			rightBox.value = "0" + decimalButton.value;
+		} else {
+			rightBox.value = parseInt(rightBox.value) + decimalButton.value;
 		}
 	}
 }
 
 function checkMaxLength () {
-	operandLeft.getAttribute("maxlength");
-	operandRight.getAttribute("maxlength");
+	leftBox.getAttribute("maxlength");
+	rightBox.getAttribute("maxlength");
 }
 
 function operatorPushToTop () {
-	operatorCenter.value = this.value;
+	centerBox.value = this.value;
 }
 
 function clearData () {
-	operandLeft.value = "";
-	operandRight.value = "";
-	operatorCenter.value = "";
+	leftBox.value = "";
+	rightBox.value = "";
+	centerBox.value = "";
 }
 
 function getSquareRoot () {
-	if (operatorCenter.value == "") {
-		operandLeft.value = (Math.sqrt(operandLeft.value)).toFixed(5);
+	if (centerBox.value == "") {
+		leftBox.value = (Math.sqrt(leftBox.value)).toFixed(5);
 	} else {
-		operandRight.value = (Math.sqrt(operandRight.value)).toFixed(5);
+		rightBox.value = (Math.sqrt(rightBox.value)).toFixed(5);
 	}
 }
 
 function toggleNumberSign () {
-	if (operatorCenter.value == "") {
-		operandLeft.value *= (-1);
+	if (centerBox.value == "") {
+		leftBox.value *= (-1);
 	} else {
-		operandRight.value *= (-1);
+		rightBox.value *= (-1);
 	}
 }
 
 function solveEquation () {
-	var a = operandLeft.value;
-	var b = operandRight.value;
+	var a = leftBox.value;
+	var b = rightBox.value;
 	var result;
-	if (operatorCenter.value == "+") {
+	if (centerBox.value == "+") {
 		result = parseFloat(a) + parseFloat(b);
-	} else if (operatorCenter.value == "-") {
+	} else if (centerBox.value == "-") {
 		result = parseFloat(a) - parseFloat(b);
-	} else if (operatorCenter.value == "/") {
+	} else if (centerBox.value == "/") {
 		result = parseFloat(a) / parseFloat(b);
-	} else if (operatorCenter.value == "*") {
+	} else if (centerBox.value == "*") {
 		result = parseFloat(a) * parseFloat(b);
-	} else if (operatorCenter.value == "^") {
+	} else if (centerBox.value == "^") {
 		result = Math.pow(a, b);
 	}
-	if (((result.toString()).length) > leftMaxLength) {
-		operandLeft.value = result.toFixed(2);
+	if (result.toString().length > leftMaxLength) {
+		leftBox.value = result.toExponential(0);
 	} else {
-		operandLeft.value = result;
+		leftBox.value = result;
 	}
-	operandRight.value = "";
-	operatorCenter.value = "";
+	rightBox.value = "";
+	centerBox.value = "";
 }
 
 pressNumberButtons(event);

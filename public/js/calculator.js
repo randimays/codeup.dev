@@ -7,6 +7,7 @@ var operandRight = document.getElementById("rightOperand");
 var decimalButton = document.getElementById("decimalbtn");
 var leftMaxLength = operandLeft.getAttribute("maxlength");
 var rightMaxLength = operandRight.getAttribute("maxlength");
+var posNegButton = document.getElementById("posnegbtn");
 
 function pressNumberButtons (event) {
 	var numberButtonsArray = document.getElementsByClassName("number-btn");
@@ -25,14 +26,12 @@ decimalButton.addEventListener ("click", decimalPushToTop);
 (document.getElementById("clearbtn")).addEventListener ("click", clearData);
 (document.getElementById("equalsbtn")).addEventListener ("click", solveEquation);
 (document.getElementById("sqrtbtn")).addEventListener ("click", getSquareRoot);
-(document.getElementById("posnegbtn")).addEventListener ("click", toggleNumberSign);
-(document.getElementById("exponentbtn")).addEventListener ("click", raiseNumberToPower);
 
 function numberPushToTop () {
 	for (var i = 0; i < operatorButtonsArray.length; i++) {
 		operatorButtonsArray[i].removeAttribute("disabled");
 	}
-	if (operatorCenter.value == "") {
+	if (operatorCenter.value === "") {
 		if (operandLeft.value.length >= leftMaxLength) {
 			operandLeft.value = ((parseFloat(operandLeft.value)).toExponential(0)); 
 			operandLeft.value += parseFloat(this.value);
@@ -46,13 +45,20 @@ function numberPushToTop () {
 		} else
 			operandRight.value += this.value;
 	}
+	posNegButton.disabled = false;
 }
+
+posNegButton.addEventListener ("click", toggleNumberSign);
 
 function decimalPushToTop () {
 	if (operatorCenter.value == "") {
 		operandLeft.value = parseInt(operandLeft.value) + decimalButton.value; 
 	} else {
-		operandRight.value = parseInt(operandRight.value) + decimalButton.value;
+		if (operandRight.value == "") {
+			operandRight.value = "0" + decimalButton.value;
+		} else {
+			operandRight.value = parseInt(operandRight.value) + decimalButton.value;
+		}
 	}
 }
 
@@ -87,27 +93,20 @@ function toggleNumberSign () {
 	}
 }
 
-function raiseNumberToPower () {
-	if (operatorCenter.value == "") {
-		operandLeft.value = Math.pow(operandLeft.value, pressNumberButtons);
-	} else {
-		operandRight.value = Math.pow(operandRight.value, pressNumberButtons);
-	}
-}
-
 function solveEquation () {
 	var a = operandLeft.value;
 	var b = operandRight.value;
 	var result;
 	if (operatorCenter.value == "+") {
 		result = parseFloat(a) + parseFloat(b);
-		console.log(result);
 	} else if (operatorCenter.value == "-") {
 		result = parseFloat(a) - parseFloat(b);
 	} else if (operatorCenter.value == "/") {
 		result = parseFloat(a) / parseFloat(b);
 	} else if (operatorCenter.value == "*") {
 		result = parseFloat(a) * parseFloat(b);
+	} else if (operatorCenter.value == "^") {
+		result = Math.pow(a, b);
 	}
 	if (((result.toString()).length) > leftMaxLength) {
 		operandLeft.value = result.toFixed(2);

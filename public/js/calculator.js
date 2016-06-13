@@ -22,11 +22,6 @@ function pressOperatorButtons (event) {
 	}
 }
 
-decimalButton.addEventListener ("click", decimalPushToTop);
-(document.getElementById("clearbtn")).addEventListener ("click", clearData);
-(document.getElementById("equalsbtn")).addEventListener ("click", solveEquation);
-(document.getElementById("sqrtbtn")).addEventListener ("click", getSquareRoot);
-
 function numberPushToTop () {
 	for (var i = 0; i < operatorButtonsArray.length; i++) {
 		operatorButtonsArray[i].removeAttribute("disabled");
@@ -49,8 +44,6 @@ function numberPushToTop () {
 	(document.getElementById("exponentbtn")).disabled = false;
 	(document.getElementById("sqrtbtn")).disabled = false;
 }
-
-posNegButton.addEventListener ("click", toggleNumberSign);
 
 function decimalPushToTop () {
 	if (centerBox.value == "") {
@@ -84,6 +77,10 @@ function clearData () {
 }
 
 function getSquareRoot () {
+	if (leftBox.value < 0 || rightBox.value < 0) {
+		alert("You cannot take the square root of a negative number.");
+		leftBox.value = "undefined";
+	}
 	if (centerBox.value == "") {
 		leftBox.value = (Math.sqrt(leftBox.value)).toFixed(5);
 	} else {
@@ -108,7 +105,12 @@ function solveEquation () {
 	} else if (centerBox.value == "-") {
 		result = parseFloat(a) - parseFloat(b);
 	} else if (centerBox.value == "/") {
-		result = parseFloat(a) / parseFloat(b);
+		if (parseFloat(b) == 0) {
+			alert("You cannot divide by zero.");
+			result = "undefined";
+		} else {
+			result = parseFloat(a) / parseFloat(b);
+		}
 	} else if (centerBox.value == "*") {
 		result = parseFloat(a) * parseFloat(b);
 	} else if (centerBox.value == "^") {
@@ -122,6 +124,12 @@ function solveEquation () {
 	rightBox.value = "";
 	centerBox.value = "";
 }
+
+posNegButton.addEventListener ("click", toggleNumberSign);
+decimalButton.addEventListener ("click", decimalPushToTop);
+(document.getElementById("clearbtn")).addEventListener ("click", clearData);
+(document.getElementById("equalsbtn")).addEventListener ("click", solveEquation);
+(document.getElementById("sqrtbtn")).addEventListener ("click", getSquareRoot);
 
 pressNumberButtons(event);
 pressOperatorButtons(event);

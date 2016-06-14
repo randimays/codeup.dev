@@ -7,13 +7,13 @@
 
 	<h1>Hello World!</h1>
 	<div id="container">
-		<p class="sample">This is some sample text.</p>
+		<p class="codeup">This is some sample text.</p>
 		<p id="listannounce">Here is an example of an unordered list!</p>
-		<ul class="list">
+		<ul id="codeup">
 			<li class="itemone">List Item #1</li>
-			<li class="itemtwo">List Item #2</li>
+			<li class="codeup">List Item #2</li>
 			<li id="itemthree">List Item #3</li>
-			<li class="itemfour">List Item #4</li>
+			<li>List Item #4</li>
 		</ul>
 	</div>
 
@@ -22,11 +22,8 @@
 	<script>
 		$ (document).ready(function() {
 
-			var $p = $("#listannounce").html();
-			alert($p);
-
-			var $li = $("#itemthree").html();
-			alert($li);
+			var $codeup = $(".codeup");
+			$codeup.css("border", "1px solid red");
 		})
 
 

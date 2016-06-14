@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Google Maps</title>
+	<style type="text/css">
+		#map {
+			height: 400px;
+			width: 500px;
+			margin: 0 auto 30px auto;
+		}
+
+		#zoombuttons {
+			margin: 0 auto 20px auto;
+			text-align: center;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<div id="zoombuttons">
+		<button id="reset" type="button" name="reset">Reset To Default</button>
+		<button id="zoom5" type="button" name="zoom5">Set Zoom: 5</button>
+		<button id="zoom15" type="button" name="zoom15">Set Zoom: 15</button>
+		<button id="zoom20" type="button" name="zoom20">Set Zoom: 20</button>
+	</div>
+	
+	<div id="map"></div>
+
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB1gqhgAtDevuHAKoo7XIyThfsQIb7AVNE"></script>
+
+	<script type="text/javascript">
+
+	(function() {
+		"use strict";
+
+		var mapOptions = {
+			zoom: 10,
+			center: {
+				lat:  29.4241,
+				lng: -98.4936
+			}
+		};
+
+		var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+		var geocoder = new google.maps.Geocoder();
+		var address = "600 Navarro St, San Antonio, TX 78205";
+
+		geocoder.geocode({ "address": address }, function (results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				map.setCenter(results[0].geometry.location);
+			} else {
+				alert("Geocoding was not successful - STATUS: " + status);
+			}
+		});
+
+		var restaurants = [
+			{
+				lat: 29.519642,
+				lng: -98.506294,
+				content: "<h2>The Lion & Rose Restaurant & Pub</h2><p>A place to get delicious British-style food and play Geeks Who Drink pub trivia.</p>"
+			},
+			{
+				lat: 29.52313,
+				lng: -98.494712,
+				content: "<h2>Freebirds World Burrito</h2><p>A place to get a huge burrito. I like to get the midsize burrito with refried beans, chicken fajita meat and veggies.</p>"
+			},
+			{
+				lat: 29.572055,
+				lng: -98.324932,
+				content: "<h2>Orange Leaf Frozen Yogurt</h2><p>A place to get some awesome froyo. My favorite flavor is cheesecake.</p>"
+			}
+		];
+
+		restaurants.forEach(function (element) {
+			
+			var location = { lat: element.lat, lng: element.lng }	
+			
+			var marker = new google.maps.Marker({
+				position: location,
+				map: map,
+				animation: google.maps.Animation.DROP
+			});
+
+			var infowindow = new google.maps.InfoWindow({
+				content: element.content
+				});
+
+			marker.addListener('click', function() {
+				map.setZoom(13);
+				map.setCenter(location);
+				infowindow.open(map, marker);
+			})
+		})
+
+		reset.addEventListener("click", function reset () {
+			map.setZoom(10);
+		})
+
+		zoom5.addEventListener("click", function setZoom5 () {
+			map.setZoom(5);
+		});
+
+		zoom15.addEventListener("click", function setZoom15 () {
+			map.setZoom(15);
+		});
+
+		zoom20.addEventListener("click", function setZoom20 () {
+			map.setZoom(20);
+		});
+
+	})();
+
+		// var mapOptions = {
+		// 	zoom: 10,
+		// 	center: {
+		// 		lat:  29.4241,
+		// 		lng: -98.4936
+		// 	}
+		// };
+
+		// var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+		// var address = "842 NW Loop 410, San Antonio, TX 78216";
+		// var address2 = "125 NW Loop 410 #440, San Antonio, TX 78216";
+		// var address3 = "8311 Agora Pkwy #104, Selma, TX 78154";
+		// var geocoder = new google.maps.Geocoder();
+		// var infowindow = new google.maps.InfoWindow({
+		// 	content: "The Lion & Rose Restaurant & Pub"
+		// });
+		// var infowindow2 = new google.maps.InfoWindow({
+		// 	content: "Freebirds World Burrito"
+		// });
+		// var infowindow3 = new google.maps.InfoWindow({
+		// 	content: "Orange Leaf Frozen Yogurt"
+		// });
+
+		// geocoder.geocode({ "address": address }, function(results, status) {
+		// 	if (status == google.maps.GeocoderStatus.OK) {
+		// 		var marker = new google.maps.Marker({
+		// 			position: results[0].geometry.location,
+		// 			map: map,
+		// 			animation: google.maps.Animation.DROP
+		// 		});
+		// 	} else {
+		// 		alert("Geocoding was not successful - STATUS: " + status);
+		// 	}
+		// 		marker.addListener('click', function() {
+		// 			map.setZoom(13);
+		// 			map.setCenter(results[0].geometry.location);
+		// 			infowindow.open(map, marker);
+		// 		});
+		// });
+
+		// geocoder.geocode({ "address": address2 }, function(results, status) {
+		// 	if (status == google.maps.GeocoderStatus.OK) {
+		// 		var marker2 = new google.maps.Marker({
+		// 			position: results[0].geometry.location,
+		// 			map: map,
+		// 			animation: google.maps.Animation.DROP
+		// 		});
+		// 	} else {
+		// 		alert("Geocoding was not successful - STATUS: " + status);
+		// 	}
+		// 		marker2.addListener('click', function() {
+		// 			map.setZoom(13);
+		// 			map.setCenter(results[0].geometry.location);
+		// 			infowindow2.open(map, marker2);
+		// 		});
+		// });
+
+		// geocoder.geocode({ "address": address3 }, function(results, status) {
+		// if (status == google.maps.GeocoderStatus.OK) {
+		// 	var marker3 = new google.maps.Marker({
+		// 		position: results[0].geometry.location,
+		// 		map: map,
+		// 		animation: google.maps.Animation.DROP
+		// 	});
+
+		// 	} else {
+		// 		alert("Geocoding was not successful - STATUS: " + status);
+		// 	}
+		// 		marker3.addListener('click', function() {
+		// 			map.setZoom(13);
+		// 			map.setCenter(results[0].geometry.location);
+		// 			infowindow3.open(map, marker3);
+		// 		});
+		// });
+
+	// 	zoom5.addEventListener("click", function setZoom5 () {
+	// 		map.setZoom(5);
+	// 	});
+
+	// 	zoom15.addEventListener("click", function setZoom15 () {
+	// 		map.setZoom(15);
+	// 	});
+
+	// 	zoom20.addEventListener("click", function setZoom20 () {
+	// 		map.setZoom(20);
+	// 	});
+
+	// })();
+
+	</script>
+</body>
+</html>
+
+
+

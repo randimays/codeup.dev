@@ -82,11 +82,11 @@
 		})
 
 		$("ul").each(function(index, element) {
-			($(element).children()).first().css("font-weight", "bold");
+			$(element).children().first().css("font-weight", "bold");
 		})
 
 		$("li").click(function() {
-			($(this).parent()).toggleClass("invisible");
+			$(this).parent().toggleClass("invisible");
 		})
 
 

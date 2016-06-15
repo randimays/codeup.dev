@@ -20,10 +20,25 @@
 
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script>
-		$ (document).ready(function() {
-			
-			var $headParaLi = $("li, h1, p");
-		})
+		
+
+		$("h1").on("click", function() {
+			$(this).css("background-color", "violet");
+		});
+
+		$("p").on("dblclick", function() {
+			$(this).css("font-size", "18px");
+		});
+
+		$("li").hover(
+			function() {
+				$(this).css("color", "red");
+			},
+			function() {
+				$(this).css("color", "white");
+			}
+		);
+
 	</script>
 </body>
 </html>

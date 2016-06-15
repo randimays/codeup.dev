@@ -49,15 +49,46 @@
 		<dd class="invisible">Golden Gate National Recreation Area is home to Alcatraz, America's first "supermax" prison. It is also home to more than two dozen natural, historic, and cultural sites in and around the city of San Francisco.</dd>
 	</dl>
 
+	<h3>Badlands National Park</h3>
+		<ul>
+			<li>Since 1994, Badlands has served as the site for the reintroduction of the black-footed ferret, one of the most endangered animals in the world.</li>
+			<li>The rock in the park is eroding at a rate of 1 inch per year.</li>
+			<li>In 1890, the park witnessed one of the last "ghost dances"--a dance the Lakota Indians believed would make them impervious to bullets and push encroaching white men out of their territory--at Stronghold Table.</li>
+			<li>The park contains numerous fossils of extinct creatures, largely from the Oligocene era of about 30 million years ago.</li>
+		</ul>
+
+	<h3>Denali National Park</h3>
+		<ul>
+			<li>Denali means "The High One" in the language of the Athabascan tribe.</li>
+			<li>Mt. McKinley is the most famous attraction in the park.</li>
+			<li>Denali's wood frog is the park's only amphibian, and it can "freeze solid" during the winter--the frog's heart stops beating and its lungs do not breathe again until the spring thaw.</li>
+			<li>Most contemporary knowledge about the behavior of wolves came from studying the animals in Denali National Park.</li>
+		</ul>
+
+	<h3>Everglades National Park</h3>
+		<ul>
+			<li>The park is the largest continuous stand of sawgrass prairie in North America.</li>
+			<li>There are 14 endangered and 9 threatened species residing in the park.</li>
+			<li>The park is the most significant breeding groups for tropical wading birds in North America.</li>
+			<li>The Everglades are the major "edge" area of the northern and southern limits for many species creating a unique mingling of diverse temperate and subtropical species.</li>
+		</ul>
+
+
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script>
 
-	// $(document).ready(function() {
 		$(".answer").click(function(event) {
-			event.preventDefault();
 			$("dd").toggleClass("invisible");
 		})
-	// });
+
+		$("ul").each(function(index, element) {
+			($(element).children()).first().css("font-weight", "bold");
+		})
+
+		$("li").click(function() {
+			($(this).parent()).toggleClass("invisible");
+		})
+
 
 	</script>
 </body>

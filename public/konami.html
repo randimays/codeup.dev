@@ -12,43 +12,43 @@
 	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script>
 		"use strict";
+		// first try!
+		// var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+		// var userCode = [];
+		// var result;
 
-		var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
-		var userCode = [];
-		var result;
+		// $(document).keyup(function(event){
+		// 	userCode.push(event.keyCode);
+			
+		// 	if (event.keyCode == 13) {
+		// 		for (var i = 0; i < userCode.length; i++) {
+		// 			if (userCode.length == konamiCode.length && userCode[i] == konamiCode[i]) { 
+		// 				result = "You have added 30 lives!";
+		// 				$("#victory").css("background-image", "url(img/1up.png)");
+		// 			} else {
+		// 				result = "Incorrect. Please try again.";
+		// 				userCode = [];
+		// 			}
+		// 		}
+		// 	alert(result);
+		// 	}
+		// });
+
+	var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+	var index = 0;
 
 		$(document).keyup(function(event){
-			userCode.push(event.keyCode);
-			
-			if (event.keyCode == 13) {
-				for (var i = 0; i < userCode.length; i++) {
-					if (userCode.length == konamiCode.length && userCode[i] == konamiCode[i]) { 
-						result = "You have added 30 lives!";
-						$("#victory").css("background-image", "url(img/1up.png)");
-					} else {
-						result = "Incorrect. Please try again.";
-						userCode = [];
-					}
-				}
-			alert(result);
+			if (event.keyCode == konamiCode[index]) {
+				index++;
+			} else {
+				index = 0;
+			}
+
+			if (konamiCode.length == index) {
+				alert("You get 30 lives!");
+				index = 0;
 			}
 		});
-
-	// var konamiCode = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
-	// var index = 0;
-
-	// 	$(document).keyup(function(event){
-	// 		if (event.keyCode == konamiCode[index]) {
-	// 			index++;
-	// 		} else {
-	// 			index = 0;
-	// 		}
-
-	// 		if (konamiCode.length == index) {
-	// 			alert("You get 30 lives!");
-	// 			index = 0;
-	// 		}
-	// 	});
 
 	</script>
 </body>

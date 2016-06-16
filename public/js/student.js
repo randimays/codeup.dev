@@ -1,4 +1,3 @@
-
 var student = {
 		awesomeGrade: 80,
 		name: null,
@@ -11,7 +10,7 @@ var student = {
 			this.subjects.push(subject);
 		},
 		calculateAverage: function(sum) {
-			 var average = 0;
+			var average = 0;
         	this.subjects.forEach(function (subject) {
             average = average + parseInt(subject.grade);
         	});
@@ -22,55 +21,48 @@ var student = {
 		}
 	};
 
-var usernameInput = document.forms.username.name; 
-var studentLabel = document.querySelector("#student-name"); 
-var nameSaveButton = document.querySelector("#save-name");
-var gradesTable = document.querySelector("#grades");
-var addAndContinue = document.querySelector("#add-grade");
-var addAndAverage = document.querySelector("#calculate-average");
-var averageCell;
-var tableRow;
+var usernameInput = $("#name"); 
+var nameSaveButton = $("#save-name");
+var gradesTable = $("#grades");
+var addAndContinue = $("#add-grade");
+var addAndAverage = $("#calculate-average");
 
 function uponNameSave () {
-	studentLabel.innerHTML = usernameInput.value;
-	student.name = usernameInput.value;
-	usernameInput.disabled = true;
-	nameSaveButton.disabled = true;
-	addAndContinue.disabled = false;
-	addAndAverage.disabled = false;
+	$("#student-name").html(usernameInput.val());
+	student.name = usernameInput.val();
+	usernameInput.attr("disabled", true);
+	nameSaveButton.attr("disabled", true);
+	addAndContinue.removeAttr("disabled"); 
+	addAndAverage.removeAttr("disabled");
 }
 
 function addSubjectsGrades (subject, grade) {
-	subject = (document.forms.info.subject).value;
-	grade = (document.forms.info.grade).value;
+	subject = $("#subject").val();
+	grade = $("#grade").val();
 	student.addInfoToArray(subject, grade);
-	(document.forms.info.subject).value = '';
-	(document.forms.info.grade).value = '';
+	$("#subject").val("");
+	$("#grade").val("");
 	putInfoInTable();
 }
 
 function putInfoInTable (subject, grade) {
 	for (var i = 0; i < student.subjects.length; i++) {
-	tableRow = "<tr><td>" + student.subjects[i].title + "</td><td>" + student.subjects[i].grade + "</td></tr>"; 
+	var tableRow = "<tr><td>" + student.subjects[i].title + "</td><td>" + student.subjects[i].grade + "</td></tr>"; 
 	}
-		gradesTable.innerHTML = tableRow + gradesTable.innerHTML;
+		gradesTable.html(tableRow + gradesTable.html());
 }
 
 function calculateAverage () {
-	averageCell = document.querySelector("#student-average");
-	averageCell.innerHTML = student.calculateAverage();
+	$("#student-average").html(student.calculateAverage().toFixed(2));
 	if (student.isAwesome()) {
-		document.getElementById("student-awesome").removeAttribute("class");
-		document.getElementById("student-practice").setAttribute("class", "hidden");
+		$("#student-awesome").removeAttr("class");
 	} else {
-		document.getElementById("student-practice").removeAttribute("class");
-		document.getElementById("student-awesome").setAttribute("class", "hidden");
+		$("#student-practice").removeAttr("class");
 	}
-
-	addAndContinue.setAttribute("disabled", true);
-	addAndAverage.setAttribute("disabled", true);
+	addAndContinue.attr("disabled", true);
+	addAndAverage.attr("disabled", true);
 }
 
-nameSaveButton.addEventListener("click", uponNameSave);
-addAndContinue.addEventListener("click", addSubjectsGrades);
-addAndAverage.addEventListener("click", calculateAverage);
+nameSaveButton.on("click", uponNameSave);
+addAndContinue.on("click", addSubjectsGrades);
+addAndAverage.on("click", calculateAverage);

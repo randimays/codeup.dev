@@ -77,7 +77,7 @@
 	<script>
 
 		$(".answer").click(function(event) {
-			$(this).next().fadeIn(3000);
+			$(this).next().slideToggle();
 		})
 
 		$("ul").each(function(index, element) {
@@ -85,7 +85,7 @@
 		})
 
 		$("h3").click(function(event) {
-			$(this).next().fadeToggle();
+			$(this).next().slideToggle();
 		})
 
 	</script>

@@ -78,7 +78,7 @@
 	<script>
 
 		$(".answer").click(function(event) {
-			$("dd").toggleClass("invisible");
+			$("dd").toggle();
 		})
 
 		$("ul").each(function(index, element) {
@@ -86,7 +86,7 @@
 		})
 
 		$("li").click(function() {
-			$(this).parent().toggleClass("invisible");
+			$(this).parent().hide();
 		})
 
 

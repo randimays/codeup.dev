@@ -50,16 +50,16 @@
 		$.get("/data/inventory.json").done(function fillTable(inventory) {
 			inventory.sort(function (toolA, toolB) {
 		        if (toolA.title < toolB.title) {
-		            return 1;
+		            return -1;
 		        }
 		        if (toolA.title > toolB.title) {
-		            return -1;
+		            return 1;
 		        }
 		        return 0;
 		    });
 			productsTable.html("");
 			inventory.forEach(function(tool, index) {
-				$(productsTable).html("<tr><td>" + inventory[index].title + "</td><td>" + inventory[index].quantity + "</td><td>$" + inventory[index].price + "</td><td>" + (inventory[index].categories.join(', ')) + "</td></tr>" + productsTable.html());
+				productsTable.append("<tr><td>" + inventory[index].title + "</td><td>" + inventory[index].quantity + "</td><td>$" + inventory[index].price + "</td><td>" + (inventory[index].categories.join(', ')) + "</td></tr>" + productsTable);
 				})
 			});
 		}

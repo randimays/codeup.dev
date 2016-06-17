@@ -1,0 +1,30 @@
+body {
+	background-color: linen;
+}
+
+hr.rule {
+	border-top: 1px dotted lightslategray;
+}
+
+h1 {
+	color: lightslategray;
+}
+
+p.categories {
+	font-style: italic;
+	font-size: .85em;
+	margin-top: 0;
+	color: lightcoral;
+}
+
+p.content {
+	color: #555;
+}
+
+h6.dates {
+	color: goldenrod;
+}
+
+h3.headers {
+	color: brown;
+}

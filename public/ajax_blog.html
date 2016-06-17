@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ajax Blog</title>
+	<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
+	<link href="css/ajax_blog.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+
+	<h1>Ajax Blog</h1>
+
+	<div id="posts"></div>
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/js/bootstrap/bootstrap.min.js"></script>
+<script>
+
+$.get("/data/blog.json").done(function(posts){
+	posts.forEach(function(post, index){
+		$("#posts").html("<h3 class=\"headers\"><hr class=\"rule\"></hr>" + posts[index].title + "</h3><h6 class=\"dates\">" + posts[index].date + "</h6><p class=\"content\">" + posts[index].content + "</p><p class=\"categories\">Categories: " + posts[index].categories.join(", ") + "</p>" + $("#posts").html());
+	})
+})
+
+</script>
+</body>
+</html>

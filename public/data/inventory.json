@@ -63,5 +63,14 @@
             "outdoor"
         ],
         "price": 10
+     }, {
+        "title": "Weed Whacker",
+        "quantity": 5,
+        "categories": [
+            "tool",
+            "outdoor",
+            "gas"
+        ],
+        "price": 10
      }
 ]

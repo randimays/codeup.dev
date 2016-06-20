@@ -58,9 +58,13 @@
 		        return 0;
 		    });
 			productsTable.html("");
-			inventory.forEach(function(tool, index) {
-				productsTable.append("<tr><td>" + inventory[index].title + "</td><td>" + inventory[index].quantity + "</td><td>$" + inventory[index].price + "</td><td>" + (inventory[index].categories.join(', ')) + "</td></tr>" + productsTable);
+			var productRows = "";
+			inventory.forEach(function(tool) {
+				productRows += "<tr><td>" + tool.title + "</td><td>" + tool.quantity + "</td><td>$" + tool.price + "</td><td>" + tool.categories.join(', ') + "</td></tr>";
 				})
+
+			productsTable.append(productRows);
+			
 			});
 		}
 

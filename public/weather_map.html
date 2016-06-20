@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Weather Map</title>
+	<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
+	<link href="css/weather.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+
+	<h1 class="text-center">Weather Application</h1>
+
+	<h3 id="cityname" class="text-center"></h3>
+
+		
+		<div class="row">
+		</div>
+
+	</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/js/bootstrap/bootstrap.min.js"></script>
+<script>
+
+(function() {
+
+	var cityName = $("#cityname");
+	var divHolder = $(".row");
+
+	$.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
+		APPID: "14b640618cf5e49d0d1c3c9e757dc53c",
+		q:     "San Antonio, TX",
+		units: "imperial",
+		cnt: 3
+	}).done(function(weather) {
+		console.log(weather);
+		cityName.html(weather.city.name);
+		fillDayBox(weather);
+	})
+
+	function fillDayBox(weather){
+		var threeDaysArray = weather.list;
+		console.log(threeDaysArray);
+		threeDaysArray.forEach(function(day) {
+			var highTemperature = (day.temp.max).toFixed(0);
+			var lowTemperature = (day.temp.min).toFixed(0);
+			var weather = day.weather[0].description;
+			var main = day.weather[0].main;
+			var humidity = day.humidity;
+			var wind = day.speed;
+			var pressure = day.pressure;
+			var icon = day.weather[0].icon;
+			var data = "<div class=\"dayDiv col-md-4\"><h3>" + highTemperature + "&deg;/" + lowTemperature + "&deg;</h3>" + "<p><img alt=\"weather icon\" src=\"http://openweathermap.org/img/w/" + icon + ".png\">" + "</p><p><span class=\"heading\">" + main + ":</span> " + weather + "</p><p><span class=\"heading\">Humidity:</span> " + humidity + "&#37;</p><p><span class=\"heading\">Wind:</span> " + wind + " mph</p><p><span class=\"heading\">Pressure: </span> " + pressure + " mb</p></div>";
+			divHolder.append(data);
+		})
+	}
+
+})();
+
+// temperature, clouds, humidity, wind, pressure
+
+
+</script>
+</body>
+</html>

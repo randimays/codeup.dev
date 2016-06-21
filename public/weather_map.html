@@ -8,14 +8,12 @@
 <body>
 	<div class="container">
 
-		<h2 class="text-center">Weather Application</h2>
+		<h2 class="text-center">Weather for<span id="cityname" class="location"></span></h2>
 
 		<div id="customData" class="text-center">
 			<label for="location">Location:</label><input type="text" id="location" name="location" placeholder="San Antonio, TX">
 			<button type="submit" id="submitLocation">Check Weather</button>
 		</div>
-
-		<h4 id="cityname" class="text-center"></h4>
 			
 		<div class="row">
 		</div>
@@ -31,7 +29,7 @@
 <script src="/js/moment.js"></script>
 <script type="text/javascript">
 
-// (function() {
+(function() {
 
 	"use strict";
 
@@ -42,7 +40,7 @@
 	var geocoder = new google.maps.Geocoder();
 	
 	var mapOptions = {
-		zoom: 8,
+		zoom: 4,
 		center: {
 			lat: 29.4267904,
 			lng: -98.4917651
@@ -51,6 +49,12 @@
 
 	var map = new google.maps.Map(document.getElementById("map"), mapOptions);
 
+	var marker = new google.maps.Marker({
+		position: mapOptions.center,
+		map: map,
+		draggable: true
+	});
+
 	function geocodeAddress(){
 		geocoder.geocode({ "address": city }, function(results, status) {
 			if (status == google.maps.GeocoderStatus.OK) {
@@ -58,19 +62,18 @@
 			} else {
 				alert("Geocoding was not successful - STATUS: " + status);
 			}
-			
-			var marker = new google.maps.Marker({
-				position: results[0].geometry.location,
-				map: map,
-				animation: google.maps.Animation.DROP,
-				draggable: true
-			});
+
+			marker.setPosition(results[0].geometry.location);
+
+			google.maps.event.addListener(marker, "dragend", function(event) {
+				updateForecast(event.latLng);
+			})
 
 			updateForecast(results[0].geometry.location);
 		})
 	}
 
-    function updateForecast(latLng){
+	function updateForecast(latLng){
 
 		var config = {
 			APPID: "14b640618cf5e49d0d1c3c9e757dc53c",
@@ -81,7 +84,7 @@
 		};
 
 		$.get("http://api.openweathermap.org/data/2.5/forecast/daily", config).done(function(weather) {
-				cityName.html("Current Location: <span class=\"location\">" + weather.city.name + "</span>");
+				cityName.html(" " + weather.city.name);
 				fillDayBox(weather);
 			})
 	}
@@ -101,34 +104,26 @@
 			var timestamp; 
 
 			if (index == 0) {
-				timestamp = moment().calendar();
+				timestamp = moment().format("dddd");
 			} else if (index == 1) {
-				timestamp = moment().add(1, "days").calendar();
+				timestamp = moment().add(1, "days").format("dddd");
 			} else {
-				timestamp = moment().add(2, "days").calendar();
+				timestamp = moment().add(2, "days").format("dddd");
 			}
 
-			var data = "<div class=\"dayDiv col-md-4\">" + timestamp + "<h3>" + highTemperature + "&deg;/" + lowTemperature + "&deg;</h3>" + "<p><img alt=\"weather icon\" src=\"http://openweathermap.org/img/w/" + icon + ".png\">" + "</p><p><span class=\"heading\">" + main + ":</span> " + description + "</p><p><span class=\"heading\">Humidity:</span> " + humidity + "&#37;</p><p><span class=\"heading\">Wind:</span> " + wind + " mph</p><p><span class=\"heading\">Pressure: </span> " + pressure + " mb</p></div>";
+			var data = "<div class=\"dayDiv col-md-4\">" + timestamp + "<h3>" + highTemperature + "&deg;/" + lowTemperature + "&deg;</h3>" + "<p><img alt=\"weather icon\" src=\"http://openweathermap.org/img/w/" + icon + ".png\"></p><p><span class=\"heading\">" + main + ":</span> " + description + "</p><p><span class=\"heading\">Humidity:</span> " + humidity + "&#37;</p><p><span class=\"heading\">Wind:</span> " + wind + " mph</p><p><span class=\"heading\">Pressure: </span> " + pressure + " mb</p></div>";
 			divHolder.append(data);
 		})
 	}
-		
-	// googleMap.on("click", function(event) {
- //    	marker = new google.maps.Marker({
- //    		position: event.latlng, 
- //    		map: map
- //    	});
-	// });
 
-	function searchCity(){
+	submitLocation.on("click", function(){
 		city = $("#location").val();
 		geocodeAddress();
-	}
-
-	submitLocation.on("click", searchCity);
+	});
 
 	geocodeAddress();
-// })();
+
+})();
 
 </script>
 </body>

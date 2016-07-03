@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title></title>
+	<title>JavaScript Calculator</title>
 	<meta charset="utf-8">
-	<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
 	<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+	<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
 	<link href="css/calculator.css" type="text/css" rel="stylesheet">
 </head>
 <body>
@@ -14,21 +14,15 @@
 	
 		<div class="row">
 			<div id="inputs" class="text-center">
-				<input id="leftOperand" maxlength="11" readonly>
-				<input id="operator" maxlength="1" readonly>
-				<input id="rightOperand" maxlength="11" readonly>
+				<input id="leftBox" maxlength="11" readonly>
+				<input id="centerBox" maxlength="1" readonly>
+				<input id="rightBox" maxlength="11" readonly>
 			</div>
 		</div>
 
-<!-- 		<div class="row">
-			<div id="input" class="text-center">
-				<textarea id="topinput" readonly></textarea>
-			</div>
-		</div> -->
-
 		<div id="groupBtns">
 			<div class="row text-center">
-				<input id="clearbtn" class="colorClear" value="C" readonly>
+				<input id="clearbtn" class="clearColor" value="C" readonly>
 				<input id="exponentbtn" class="operator-btn" value="^" readonly disabled>
 				<input id="sqrtbtn" value="&radic;" readonly disabled>
 				<input id="dividebtn" class="operator-btn colorOperators" value="/" readonly disabled>
@@ -67,9 +61,8 @@
 	</div>
 
 <!-- 	JS -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="js/calculator.js"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="/js/bootstrap/bootstrap.min.js"></script> -->
 
 </body>
 </html>

@@ -1,135 +1,113 @@
-"use strict";
+$(document).ready(function() {
 
-var operatorButtonsArray = document.getElementsByClassName("operator-btn");
-var centerBox = document.getElementById("operator");
-var leftBox = document.getElementById("leftOperand");
-var rightBox = document.getElementById("rightOperand");
-var leftMaxLength = leftBox.getAttribute("maxlength");
-var rightMaxLength = rightBox.getAttribute("maxlength");
-var decimalButton = document.getElementById("decimalbtn");
-var posNegButton = document.getElementById("posnegbtn");
+	"use strict";
 
-function pressNumberButtons (event) {
-	var numberButtonsArray = document.getElementsByClassName("number-btn");
-	for (var i = 0; i < numberButtonsArray.length; i++) {
-		numberButtonsArray[i].addEventListener ("click", numberPushToTop);
-	}
-}
+	var operatorButtonsArray = $(".operator-btn");
+	var numberButtonsArray = $(".number-btn");
+	var centerBox = $("#centerBox");
+	var leftBox = $("#leftBox");
+	var rightBox = $("#rightBox");
+	var leftMaxLength = leftBox.attr("maxlength");
+	var rightMaxLength = rightBox.attr("maxlength");
+	var decimalButton = $("#decimalbtn");
+	var posNegButton = $("#posnegbtn");
 
-function pressOperatorButtons (event) {
-	for (var i = 0; i < operatorButtonsArray.length; i++) {
-		operatorButtonsArray[i].addEventListener ("click", operatorPushToTop);
-	}
-}
+	function grayButtonPushToTop () {
 
-function numberPushToTop () {
-	for (var i = 0; i < operatorButtonsArray.length; i++) {
-		operatorButtonsArray[i].removeAttribute("disabled");
-	}
-	if (centerBox.value === "") {
-		if (leftBox.value.length >= leftMaxLength) {
-			leftBox.value = ((parseFloat(leftBox.value)).toExponential(0)); 
-			leftBox.value += parseFloat(this.value);
+		operatorButtonsArray.attr("disabled", false);
+
+		if (centerBox.val() === "") {
+			if (leftBox.val().length >= leftMaxLength) {
+				leftBox.val(parseFloat(leftBox.val().toExponential(0)) + this.value); 
+			} else {
+				if (leftBox.val() == "" && this.value == decimalButton.val()) {
+					leftBox.val("0" + decimalButton.val());
+				} else {
+					leftBox.val(leftBox.val() + this.value);
+				}
+			}
 		} else {
-			leftBox.value += this.value;
+			if (rightBox.val().length >= rightMaxLength) {
+				rightBox.val(parseFloat(rightBox.val().toExponential(0)) + this.value);
+			} else {
+				if (rightBox.val() == "" && this.value == decimalButton.val()) {
+					rightBox.val("0" + decimalButton.val());
+				} else {
+					rightBox.val(rightBox.val() + this.value);
+				}
+			}
 		}
-	} else {
-		if (rightBox.value.length >= rightMaxLength) {
-			rightBox.value = ((parseFloat(rightBox.value)).toExponential(0));
-			rightBox.value += parseFloat(this.value);
-		} else
-			rightBox.value += this.value;
-	}
-	posNegButton.disabled = false;
-	(document.getElementById("exponentbtn")).disabled = false;
-	(document.getElementById("sqrtbtn")).disabled = false;
-}
 
-function decimalPushToTop () {
-	if (centerBox.value == "") {
-		if (leftBox.value == "") {
-			leftBox.value = "0" + decimalButton.value;
+		posNegButton.attr("disabled", false);
+		$("#exponentbtn").attr("disabled", false);
+		$("#sqrtbtn").attr("disabled", false);
+	}
+
+	function operatorPushToTop () {
+		centerBox.val(this.value);
+	}
+
+	function clearData () {
+		leftBox.val("");
+		rightBox.val("");
+		centerBox.val("");
+	}
+
+	function getSquareRoot () {
+		if (leftBox.val() < 0 || rightBox.val() < 0) {
+			alert("You cannot take the square root of a negative number.");
+			leftBox.val("undefined");
+		}
+		if (centerBox.val() == "") {
+			leftBox.val((Math.sqrt(leftBox.val())).toFixed(5));
 		} else {
-			leftBox.value = parseInt(leftBox.value) + decimalButton.value; 
+			rightBox.val((Math.sqrt(rightBox.val())).toFixed(5));
 		}
-	} else {
-		if (rightBox.value == "") {
-			rightBox.value = "0" + decimalButton.value;
+	}
+
+	function toggleNumberSign () {
+		if (centerBox.val() == "") {
+			leftBox.val(leftBox.val() * (-1));
 		} else {
-			rightBox.value = parseInt(rightBox.value) + decimalButton.value;
+			rightBox.val(rightBox.val() * (-1));
 		}
 	}
-}
 
-function checkMaxLength () {
-	leftBox.getAttribute("maxlength");
-	rightBox.getAttribute("maxlength");
-}
-
-function operatorPushToTop () {
-	centerBox.value = this.value;
-}
-
-function clearData () {
-	leftBox.value = "";
-	rightBox.value = "";
-	centerBox.value = "";
-}
-
-function getSquareRoot () {
-	if (leftBox.value < 0 || rightBox.value < 0) {
-		alert("You cannot take the square root of a negative number.");
-		leftBox.value = "undefined";
-	}
-	if (centerBox.value == "") {
-		leftBox.value = (Math.sqrt(leftBox.value)).toFixed(5);
-	} else {
-		rightBox.value = (Math.sqrt(rightBox.value)).toFixed(5);
-	}
-}
-
-function toggleNumberSign () {
-	if (centerBox.value == "") {
-		leftBox.value *= (-1);
-	} else {
-		rightBox.value *= (-1);
-	}
-}
-
-function solveEquation () {
-	var a = leftBox.value;
-	var b = rightBox.value;
-	var result;
-	if (centerBox.value == "+") {
-		result = parseFloat(a) + parseFloat(b);
-	} else if (centerBox.value == "-") {
-		result = parseFloat(a) - parseFloat(b);
-	} else if (centerBox.value == "/") {
-		if (parseFloat(b) == 0) {
-			alert("You cannot divide by zero.");
-			result = "undefined";
+	function solveEquation () {
+		var a = parseFloat(leftBox.val());
+		var b = parseFloat(rightBox.val());
+		var result;
+		if (centerBox.val() == "+") {
+			result = a + b;
+		} else if (centerBox.val() == "-") {
+			result = a - b;
+		} else if (centerBox.val() == "/") {
+			if (b == 0) {
+				alert("You cannot divide by zero.");
+				result = "undefined";
+			} else {
+				result = a / b;
+			}
+		} else if (centerBox.val() == "*") {
+			result = a * b;
+		} else if (centerBox.val() == "^") {
+			result = Math.pow(a, b);
+		}
+		if (result.toString().length > leftMaxLength) {
+			leftBox.val(result.toExponential(0));
 		} else {
-			result = parseFloat(a) / parseFloat(b);
+			leftBox.val(result);
 		}
-	} else if (centerBox.value == "*") {
-		result = parseFloat(a) * parseFloat(b);
-	} else if (centerBox.value == "^") {
-		result = Math.pow(a, b);
+		rightBox.val("");
+		centerBox.val("");
 	}
-	if (result.toString().length > leftMaxLength) {
-		leftBox.value = result.toExponential(0);
-	} else {
-		leftBox.value = result;
-	}
-	rightBox.value = "";
-	centerBox.value = "";
-}
 
-posNegButton.addEventListener ("click", toggleNumberSign);
-decimalButton.addEventListener ("click", decimalPushToTop);
-(document.getElementById("clearbtn")).addEventListener ("click", clearData);
-(document.getElementById("equalsbtn")).addEventListener ("click", solveEquation);
-(document.getElementById("sqrtbtn")).addEventListener ("click", getSquareRoot);
+	decimalButton.on("click", grayButtonPushToTop);
+	numberButtonsArray.on("click", grayButtonPushToTop);
+	operatorButtonsArray.on("click", operatorPushToTop);
+	posNegButton.on("click", toggleNumberSign);
+	$("#clearbtn").on("click", clearData);
+	$("#equalsbtn").on("click", solveEquation);
+	$("#sqrtbtn").on("click", getSquareRoot);
 
-pressNumberButtons(event);
-pressOperatorButtons(event);
+});

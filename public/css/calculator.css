@@ -18,33 +18,34 @@ h1#header {
 }
 
 #inputs>input {
+	height: 50px;
 	background-color: #282c4e;
 	color: #fff;
 	font-size: 2em;
 	text-align: right;
 	border: 2px #6078bf solid;
-	height: 50px;
 	padding: 10px;
 	margin: 12px 0 8px 0;
 }
 
-#leftOperand, #rightOperand {
+#groupBtns input {
+	width: 100px;
+	height: 45px;
+	background-color: #403b3b;
+	color: #fff;
+	font-size: 2em;
+	text-align: center;
+	border: 2px #777 solid;
+	margin-bottom: 8px;
+}
+
+#leftBox, #rightBox {
 	width: 39%;
 }
 
-#operator {
+#centerBox {
 	width: 8%;
 }
-
-/* For textarea
-#topinput {
-	background-color: #282c4e;
-	border: 2px #6078bf solid;
-	width: 83%;
-	height: 60px;
-	margin: 10px 3px 4px 3px;
-	resize: none;
-}*/
 
 .exponent {
 	font-size: .65em;
@@ -55,7 +56,7 @@ h1#header {
 	border: 2px #f49232 solid;
 }
 
-#groupBtns .colorClear {
+#groupBtns .clearColor {
 	background-color: #b12828;
 	border: 2px #f43232 solid;
 }
@@ -69,19 +70,4 @@ h1#header {
 	background-color: #6078bf;
 	border: 2px #7e86f2 solid;
 
-}
-#groupBtns input, button{
-	color: #d5ddc8;
-	text-align: center;
-	font-size: 2em;
-	text-decoration: none;
-	background-color: #403b3b;
-	display: inline-block;
-	margin-bottom: 8px;
-}
-
-div.row input, button{
-	width: 100px;
-	height: 45px;
-	border: 2px #777 solid;
 }

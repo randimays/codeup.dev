@@ -44,9 +44,9 @@ $favoriteThings = ["kittens", "the smell of snow", "weddings", "clean things", "
 				<th>My Favorite Things</th>
 			</thead>
 			<tbody>
-<?php foreach ($favoriteThings as $thing) { ?>
-			<tr><td> <?php echo $thing; ?></td></tr>
-<?php } ?>
+				<?php foreach ($favoriteThings as $thing) : ?>
+			<tr><td> <?= $thing; ?></td></tr>
+				<?php endforeach; ?>
 			</tbody>
 		</table>
 

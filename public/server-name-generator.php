@@ -38,7 +38,7 @@ $randomName = newName($randomAdjective, $randomNoun);
 	</style>
 </head>
 <body>
-	<p>New server name: &nbsp;<span><?php echo $randomName; ?> </span></p>
+	<p>New server name: &nbsp;<span><?= $randomName; ?> </span></p>
 
 </body>
 </html>

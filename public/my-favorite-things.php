@@ -1,6 +1,12 @@
 <?php
 
-$favoriteThings = ["kittens", "the smell of snow", "weddings", "clean things", "a cool day", "ice skating", "fishing", "hiking", "an upbeat playlist", "coding", "web design"];
+function pageController() {
+	$data = [];
+	$data["favoriteThings"] = ["kittens", "the smell of snow", "weddings", "clean things", "a cool day", "ice skating", "fishing", "hiking", "an upbeat playlist", "coding", "web design"];
+	return $data;
+}
+
+extract(pageController());
 
 ?>
 

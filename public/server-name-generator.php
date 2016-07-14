@@ -1,21 +1,27 @@
 <?php
 
-$adjectives = ["miniature", "tender", "average", "mammoth", "addictive", "loose", "undiscerning", "shy", "crass", "foul", "ridiculous", "sandy", "eccentric", "stagnant"];
+function pageController() {
+	$data = [];
+	$adjectives = ["miniature", "tender", "average", "mammoth", "addictive", "loose", "undiscerning", "shy", "crass", "foul", "ridiculous", "sandy", "eccentric", "stagnant"];
+	$nouns = ["salesman", "bulldozer", "lima bean", "weasel", "funnel cake", "snowman", "ballad", "rubber duck", "lady of the evening", "spaceship", "tapdancer", "flounder", "seamstress"];
 
-$nouns = ["salesman", "bulldozer", "lima bean", "weasel", "funnel cake", "snowman", "ballad", "rubber duck", "lady of the evening", "spaceship", "tapdancer", "flounder", "seamstress"];
+	function randomizer($array) {
+		$random = rand(0, count($array));
+		return $array[$random];
+	}
 
-function randomizer($array) {
-	$random = rand(0, count($array));
-	return $array[$random];
+	function newName($random1, $random2) {
+		return $random1 . " " . $random2;
+	}
+
+	$randomAdjective = randomizer($adjectives);
+	$randomNoun = randomizer($nouns);
+	$data["randomName"] = newName($randomAdjective, $randomNoun);
+	
+	return $data;
 }
 
-function newName($random1, $random2) {
-	return $random1 . " " . $random2;
-}
-
-$randomAdjective = randomizer($adjectives);
-$randomNoun = randomizer($nouns);
-$randomName = newName($randomAdjective, $randomNoun);
+extract(pageController());
 
 ?>
 

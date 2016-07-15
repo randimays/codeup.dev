@@ -1,35 +1,23 @@
 <?php
-
-header("Location: counter.php"); // creates a redirect
-exit(); // the rest of the code will be executed if not exited
-
-if($_SERVER["REQUEST_METHOD"] == "POST") { // PHP will convert an empty array to false. At least one value will evaluate to true.
-	echo "Post request.\n";
-} else {
-	echo "Get request.\n";
-}
-
-// if($_POST) { // PHP will convert an empty array to false. At least one value will evaluate to true.
-// 	echo "Post request.\n";
-// } else {
-// 	echo "Get request.\n";
-// }
-
-$name = isset($_POST["name"]) ? $_POST["name"] : "";
-$number = isset($_POST["number"]) ? $_POST["number"] : "";
+    $items = array('Item One', 'Item Two', 'Item Three');
+    $allItems = array_merge($items, $_POST);
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>POST Example</title>
+    <title>Alternative Syntax</title>
 </head>
 <body>
-	<form method="POST">
-		<label>Name</label>
-		<input type="text" name="name"><br>
-		<label>Number</label>
-		<input type="text" name="number"><br>
-		<input type="submit">
-	</form>
+    <h1>List of Items</h1>
+    <ul>
+    <?php foreach ($allItems as $item): ?>
+        <li><?php echo $item; ?></li>
+    <?php endforeach; ?>
+    </ul>
+
+    <form method="POST" action="/form-example.php">
+        <input type="text" id="newitem" name="newitem" placeholder="Add new todo item">
+        <input type="submit" value="add">
+    </form>
 </body>
 </html>

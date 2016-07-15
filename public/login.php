@@ -42,7 +42,7 @@ extract(pageController());
 
 		.container {
 			width: 400px;
-			margin: auto;
+			margin: 100px auto 0 auto;
 			border: 1px solid #eee;
 		}
 

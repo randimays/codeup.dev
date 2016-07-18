@@ -1,9 +1,7 @@
 <?php
 
 function pageController() {
-
 	session_start();
-	var_dump($_SESSION);
 	$_SESSION["message"] = "";
 
 	// checks is user is logged in, redirects to authorized.php if true)

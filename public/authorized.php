@@ -1,6 +1,7 @@
 <?php 
 
 function pageController() {
+	
 	session_start();
 
 	// checks to see if user is already logged in. if not, redirects to login page

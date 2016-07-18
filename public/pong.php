@@ -1,21 +1,12 @@
 <?php
 
 	function pageController() {
-
 		$data = [];
-
-		if (isset($_GET["counter"])) {
-			$data["counter"] = $_GET["counter"];
-		} else {
-			$data["counter"] = 0;
-		}
-
+		$data["counter"] = isset($_GET["counter"]) ? $_GET["counter"] : 0;
 		return $data;
-		
 	}
 
-extract(pageController());
-
+	extract(pageController());
 ?>
 
 <!DOCTYPE html>
@@ -25,14 +16,15 @@ extract(pageController());
 </head>
 <body>
 
-	<h1>Hit Counter: <?= $counter ?></h1>
+	<h1>Pong</h1>
+	<h3>Hit Counter: <?= $counter?></h3>
 
 	<p>
-		<a href="/ping.php?outcome=hit&counter=<?=$counter + 1 ?>">HIT</a>
+		<a href="/ping.php?outcome=hit&amp;counter=<?=$counter + 1 ?>">HIT</a>
 	</p>
 	
 	<p>
-		<a href="/ping.php?outcome=miss&counter=<?=$counter = 0 ?>">MISS</a>
+		<a href="/ping.php?outcome=miss&amp;counter=<?=$counter = 0 ?>">MISS</a>
 	</p>
 
 </body>

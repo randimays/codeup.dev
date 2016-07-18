@@ -1,30 +1,26 @@
+<?php 
+
+function pageController() {
+	session_start();
+
+	// checks to see if user is already logged in. if not, redirects to login page
+	if (!isset($_SESSION["loggedInUser"])) {
+		header("Location: /login.php");
+		exit();
+	}
+	
+	return $_SESSION;
+}
+
+extract(pageController());
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Logged In</title>
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
-	<style>
-
-	.container {
-			width: 400px;
-			margin: 100px auto 0 auto;
-			border: 1px solid #eee;
-	}
-
-	.loginTitle {
-			color: slategray;
-	}
-
-	.title {
-			background-color: #f4f7f9;
-			padding-bottom: 8px;
-	}
-
-	.authorize {
-		padding: 30px 20px 20px 20px
-	}
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 <body>
 
@@ -38,7 +34,13 @@
 
 		<div class="row authorize text-center">
 			<div class="col-sm-12 col-md-12 col-lg-12">
-				<p>Authorized.</p>
+				<p><?=$message?></p>
+				<p class="boldLabel"> Username / Session ID:</p>
+				<p class="userData"><?=$username . " / " . $loggedInUser?></p>
+			</div>
+			<div class="authLinks">
+				<a class="loginLink" href="login.php">Back To Login</a>
+				<a href="logout.php">Log Out</a>
 			</div>
 		</div>
 

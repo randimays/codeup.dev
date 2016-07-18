@@ -1,0 +1,61 @@
+.container {
+	width: 400px;
+	margin: 100px auto 0 auto;
+	border: 1px solid #eee;
+}
+
+.loginTitle {
+	color: slategray;
+}
+
+.form {
+	padding: 30px;
+}
+
+.title {
+	background-color: #f4f7f9;
+	padding-bottom: 8px;
+}
+
+.loginFormLabel {
+	color: slategray;
+}
+
+.btn-default {
+	background-color: slategray;
+	color: #fff;
+	border-color: slategray;
+	margin-top: 5px
+	vertical-align: middle;
+}
+
+.btn-default:hover, .btn.btn-default:active {
+	background-color: #fff;
+	color: slategray;
+}
+
+.authFail {
+	display: inline;
+	color: tomato;
+	margin-left: 12px;
+}
+
+.authorize {
+	padding: 30px 20px 20px 20px
+}
+
+.boldLabel {
+	font-weight: bold;
+}
+
+.userData {
+	line-height: .25em;
+}
+
+.loginLink {
+	margin-right: 10px;
+}
+
+.authLinks {
+	margin-top: 20px;
+}

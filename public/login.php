@@ -2,9 +2,18 @@
 
 function pageController() {
 
-	$data = [];
-	$data["message"] = "";
+	session_start();
+	var_dump($_SESSION);
+	$_SESSION["message"] = "";
 
+	// checks is user is logged in, redirects to authorized.php if true)
+	if (isset($_SESSION["loggedInUser"])) {
+		$_SESSION["message"] = $_SESSION["username"] . ", you are already logged in.";
+		header("Location: /authorized.php");
+		exit();
+	}
+
+	// checks validity of credentials and returns true only when correct
 	function authenticated() {
 		$username = isset($_POST["username"]) ? $_POST["username"] : null;
 		$password = isset($_POST["password"]) ? $_POST["password"] : null;
@@ -20,14 +29,18 @@ function pageController() {
 		return $authenticated;
 	}
 
+	// checks for true from authenticated and sends user to authorized.php page with all relevant data when true
 	if (authenticated()) {
+		$_SESSION["loggedInUser"] = session_id();
+		$_SESSION["username"] = $_POST["username"];
+		$_SESSION["message"] = "Authenticated.";
 		header("Location: authorized.php");
 		exit();
 	} elseif (authenticated() === false) {
-		$data["message"] = "Authentication failed.";
+		$_SESSION["message"] = "Authentication failed.";
 	}
 
-	return $data;
+	return $_SESSION;
 }
 
 extract(pageController());
@@ -38,51 +51,7 @@ extract(pageController());
 <html>
 	<title>Login Form</title>
 	<link rel="stylesheet" type="text/css" href="/css/bootstrap/bootstrap.css">
-	<style>
-
-		.container {
-			width: 400px;
-			margin: 100px auto 0 auto;
-			border: 1px solid #eee;
-		}
-
-		.loginTitle {
-			color: slategray;
-		}
-
-		.form {
-			padding: 30px;
-		}
-
-		.title {
-			background-color: #f4f7f9;
-			padding-bottom: 8px;
-		}
-
-		.loginFormLabel {
-			color: slategray;
-		}
-
-		.btn-default {
-			background-color: slategray;
-			color: #fff;
-			border-color: slategray;
-			margin-top: 5px
-			vertical-align: middle;
-		}
-
-		.btn-default:hover, .btn.btn-default:active {
-			background-color: #fff;
-			color: cadetblue;
-		}
-
-		.authFail {
-			display: inline;
-			color: tomato;
-			margin-left: 12px;
-		}
-
-	</style>
+	<link rel="stylesheet" type="text/css" href="/css/login.css">
 </head>
 <body>
 
@@ -106,7 +75,7 @@ extract(pageController());
 						<label for="password" class="loginFormLabel">Password</label>
 						<input type="password" name="password" placeholder="password" id="passwordField" class="form-control">
 					</div>
-					<input type="submit" class="btn btn-default"><p class="authFail"><?= $message ?></p>
+					<input type="submit" class="btn btn-default"><p class="authFail"><?=$message?></p>
 				</form>
 			</div>
 		</div>

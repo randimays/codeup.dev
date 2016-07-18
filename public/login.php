@@ -10,7 +10,6 @@ function pageController() {
 	if (isset($_SESSION["loggedInUser"])) {
 		$_SESSION["message"] = $_SESSION["username"] . ", you are already logged in.";
 		header("Location: /authorized.php");
-		exit();
 	}
 
 	// checks validity of credentials and returns true only when correct
@@ -35,7 +34,6 @@ function pageController() {
 		$_SESSION["username"] = $_POST["username"];
 		$_SESSION["message"] = "Authenticated.";
 		header("Location: authorized.php");
-		exit();
 	} elseif (authenticated() === false) {
 		$_SESSION["message"] = "Authentication failed.";
 	}

@@ -6,7 +6,6 @@ function pageController() {
 	// checks to see if user is already logged in. if not, redirects to login page
 	if (!isset($_SESSION["loggedInUser"])) {
 		header("Location: /login.php");
-		exit();
 	}
 	
 	return $_SESSION;

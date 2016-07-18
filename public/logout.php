@@ -10,6 +10,5 @@ function clearSession() {
 // dumps all session data, redirects user to login page
 clearSession();
 header("Location: /login.php");
-exit();
 
 ?>

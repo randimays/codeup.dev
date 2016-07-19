@@ -1,12 +1,13 @@
 <?php
 
-	function pageController() {
-		$data = [];
-		$data["counter"] = isset($_GET["counter"]) ? $_GET["counter"] : 0;
-		return $data;
-	}
+require_once "functions.php";
 
-	extract(pageController());
+function pageController() {
+	$counter = inputHas("counter") ? inputGet("counter") : 0;
+	return [ "counter" => $counter ];
+}
+
+extract(pageController());
 ?>
 
 <!DOCTYPE html>

@@ -1,14 +1,13 @@
 <?php
 
-session_start();
+require_once "functions.php";
 
-function clearSession() {
-	session_unset();
-	session_regenerate_id(true);
+function pageController($location) {
+	session_start();
+	clearSession();
+	redirect("login.php");
 }
 
-// dumps all session data, redirects user to login page
-clearSession();
-header("Location: /login.php");
+pageController();
 
 ?>

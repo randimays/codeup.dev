@@ -59,7 +59,7 @@ extract(pageController());
 						<label for="password" class="loginFormLabel">Password</label>
 						<input type="password" name="password" placeholder="password" id="passwordField" class="form-control">
 					</div>
-					<input type="submit" class="btn btn-default"><p class="authFail"><?= escape($message) ?></p>
+					<input type="submit" class="btn btn-default"><p class="authFail"><?=$message?></p>
 				</form>
 			</div>
 		</div>

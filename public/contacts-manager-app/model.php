@@ -1,7 +1,5 @@
 <?php
-
 require_once "controller.php";
-
 function addContact($name, $number) {
 	$contact = [
 		'name' => $name,
@@ -9,7 +7,6 @@ function addContact($name, $number) {
 	];
 	return $contact;
 }
-
 function searchContact($contacts, $name) {
 	$matches = [];
 	foreach ($contacts as $contact) {
@@ -19,15 +16,14 @@ function searchContact($contacts, $name) {
 	}
 	return $matches;
 }
-
 function updateContactsFile($contacts) {
 	$content = '';
 	foreach ($contacts as $contact) {
 		$content .= implode('|', $contact) . "\n";
 	}
-	file_put_contents('data/contacts.txt', $content);
-}
+	return file_put_contents('data/contacts.txt', $content);
 
+}
 function deleteContact($contacts, $deleteName) {
 	foreach ($contacts as $key => $contact) {
 		if (strpos($contact['name'], $deleteName) !== false) {
@@ -36,5 +32,4 @@ function deleteContact($contacts, $deleteName) {
 	}
 	return $contacts;
 }
-
 ?>

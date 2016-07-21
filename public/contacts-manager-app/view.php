@@ -2,8 +2,6 @@
 
 require_once "controller.php";
 
-extract(pageController());
-
 function formatNumber($number) {
 	if (strlen($number) == 7) {
 		return substr($number, 0, 3) . '-' . substr($number, 3);

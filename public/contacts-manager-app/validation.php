@@ -3,7 +3,7 @@
 require_once "controller.php";
 
 function isValidName($name){
-	if (!empty($name)) {
+	if (!empty($name) && is_string($name)) {
 		return $name;
 	} else {
 		return false;

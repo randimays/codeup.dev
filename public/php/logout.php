@@ -1,11 +1,12 @@
 <?php
 
-require_once "functions.php";
+require_once "../../src/Log.php";
+require_once "../../src/Auth.php";
 
-function pageController($location) {
+function pageController() {
 	session_start();
-	clearSession();
-	redirect("login.php");
+	Log::info("User $username logged out.");
+	Auth::logout();
 }
 
 pageController();

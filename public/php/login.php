@@ -1,27 +1,29 @@
 <?php
 
-require_once "functions.php";
+require_once "../../src/Log.php";
+require_once "../../src/Auth.php";
+require_once "../../src/Input.php";
 
 function pageController() {
 	session_start();
 	$_SESSION["message"] = "";
-	$username = inputHas("username") ? inputGet("username") : null;
-	$password = inputHas("password") ? inputGet("password") : null;
+	$username = Input::has("username") ? Input::get("username") : null;
+	$password = Input::has("password") ? Input::get("password") : null;
 
 	// checks if user is logged in, redirects if true)
-	if (isset($_SESSION["loggedInUser"])) {
+	if (Auth::check()) {
 		$_SESSION["message"] = $_SESSION["username"] . ", you are already logged in.";
-		redirect("authorized.php");
+		Auth::redirect("authorized.php");
 	}
 
-	// checks for true from authenticated and sends user to authorized.php page with all relevant data when true
-	if (authenticated($username, $password)) {
+	// checks for authentication
+	if (Auth::attempt($username, $password)) {
 		$_SESSION["loggedInUser"] = session_id();
-		$_SESSION["username"] = inputGet("username");
+		$_SESSION["username"] = $username;
 		$_SESSION["message"] = "Authenticated.";
-		redirect("authorized.php");
-	} elseif (authenticated($username, $password) === false) {
-		$message = "Authentication failed.";
+		Auth::redirect("authorized.php");
+	} elseif (Auth::attempt($username, $password) === false) {
+		$_SESSION["message"] = "Authentication failed.";
 	}
 
 	return $_SESSION;

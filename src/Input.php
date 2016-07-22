@@ -3,7 +3,7 @@
 class Input {
 	
 	public static function has($key) {
-		return isset($_REQUEST["$key"]));
+		return isset($_REQUEST["$key"]);
 	}
 
 	public static function get($key, $default = null) {

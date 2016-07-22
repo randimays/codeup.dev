@@ -1,15 +1,14 @@
 <?php 
 
-require_once "functions.php";
+require_once "../../src/Log.php";
+require_once "../../src/Auth.php";
 
 function pageController() {
-
 	session_start();
 
-	// checks to see if user is already logged in. if not, redirects to login page
-	if (!isset($_SESSION["loggedInUser"])) {
+	if (!Auth::check()) {
 		$_SESSION["message"] = "Please log in.";
-		redirect("authorized.php");
+		Auth::redirect("login.php");
 	}
 
 	return $_SESSION;

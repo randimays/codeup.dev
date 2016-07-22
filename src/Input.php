@@ -3,19 +3,11 @@
 class Input {
 	
 	public static function has($key) {
-		if (isset($_REQUEST["$key"])) {
-			return true;
-		} else {
-			return false;
-		}
+		return isset($_REQUEST["$key"]));
 	}
 
 	public static function get($key, $default = null) {
-		if (self::has($key)) {
-			return $_REQUEST["$key"];
-		} else {
-			return $default;
-		}
+		return self::has($key) ? $_REQUEST["$key"] : $default;
 	}
 
 	///////////////////////////////////////////////////////////////////////////

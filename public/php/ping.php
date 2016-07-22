@@ -3,8 +3,7 @@
 require_once "../../src/Input.php";
 
 function pageController() {
-	$counter = Input::has("counter") ? Input::get("counter") : 0;
-	return [ "counter" => $counter ];
+	return [ "counter" => Input::get("counter", 0) ];
 }
 
 extract(pageController());

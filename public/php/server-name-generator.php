@@ -2,9 +2,12 @@
 
 function pageController() {
 	$data = [];
-	$adjectives = ["miniature", "tender", "average", "mammoth", "addictive", "loose", "undiscerning", "shy", "crass", "foul", "ridiculous", "sandy", "eccentric", "stagnant"];
-	$nouns = ["salesman", "bulldozer", "lima bean", "weasel", "funnel cake", "snowman", "ballad", "rubber duck", "lady of the evening", "spaceship", "tapdancer", "flounder", "seamstress"];
 
+	// model
+	$adjectives = ["miniature", "tender", "average", "mammoth", "addictive", "loose", "undiscerning", "shy", "crass", "foul", "ridiculous", "sandy", "eccentric", "stagnant"];
+	$nouns = ["salesman", "bulldozer", "lima bean", "weasel", "funnel cake", "snowman", "ballad", "rubber duck", "spaceship", "tapdancer", "flounder", "seamstress"];
+
+	// controller
 	function randomizer($array) {
 		$random = rand(0, count($array));
 		return $array[$random];
@@ -24,6 +27,8 @@ function pageController() {
 extract(pageController());
 
 ?>
+
+<!-- view -->
 
 <!DOCTYPE html>
 <html>

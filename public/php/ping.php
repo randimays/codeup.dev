@@ -1,9 +1,9 @@
 <?php
 
-require_once "functions.php";
+require_once "../../src/Input.php";
 
 function pageController() {
-	$counter = inputHas("counter") ? inputGet("counter") : 0;
+	$counter = Input::has("counter") ? Input::get("counter") : 0;
 	return [ "counter" => $counter ];
 }
 
@@ -21,11 +21,11 @@ extract(pageController());
 	<h3>Hit Counter: <?= $counter?></h3>
 
 	<p>
-		<a href="/pong.php?outcome=hit&amp;counter=<?=$counter + 1 ?>">HIT</a>
+		<a href="/php/pong.php?outcome=hit&amp;counter=<?=$counter + 1 ?>">HIT</a>
 	</p>
 	
 	<p>
-		<a href="/ping.php?outcome=miss&amp;counter=<?=$counter = 0 ?>">MISS</a>
+		<a href="/php/ping.php?outcome=miss&amp;counter=<?=$counter = 0 ?>">MISS</a>
 	</p>
 
 </body>

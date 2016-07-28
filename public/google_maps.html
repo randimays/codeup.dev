@@ -31,85 +31,85 @@
 
 	<script type="text/javascript">
 
-	(function() {
-		"use strict";
+		(function() {
+			"use strict";
 
-		var mapOptions = {
-			zoom: 10,
-			center: {
-				lat:  29.4241,
-				lng: -98.4936
-			}
-		};
+			var mapOptions = {
+				zoom: 10,
+				center: {
+					lat:  29.4241,
+					lng: -98.4936
+				}
+			};
 
-		var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-		var geocoder = new google.maps.Geocoder();
-		var address = "600 Navarro St, San Antonio, TX 78205";
+			var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+			var geocoder = new google.maps.Geocoder();
+			var address = "600 Navarro St, San Antonio, TX 78205";
 
-		geocoder.geocode({ "address": address }, function (results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				map.setCenter(results[0].geometry.location);
-			} else {
-				alert("Geocoding was not successful - STATUS: " + status);
-			}
-		});
-
-		var restaurants = [
-			{
-				"lat": 29.519642,
-				"lng": -98.506294,
-				"content": "<h2>The Lion & Rose Restaurant & Pub</h2><p>A place to get delicious British-style food and play Geeks Who Drink pub trivia.</p>"
-			},
-			{
-				"lat": 29.52313,
-				"lng": -98.494712,
-				"content": "<h2>Freebirds World Burrito</h2><p>A place to get a huge burrito. I like to get the midsize burrito with refried beans, chicken fajita meat and veggies.</p>"
-			},
-			{
-				"lat": 29.572055,
-				"lng": -98.324932,
-				"content": "<h2>Orange Leaf Frozen Yogurt</h2><p>A place to get some awesome froyo. My favorite flavor is cheesecake.</p>"
-			}
-		];
-
-		restaurants.forEach(function (element) {
-			
-			var location = { lat: element.lat, lng: element.lng }	
-			
-			var marker = new google.maps.Marker({
-				position: location,
-				map: map,
-				animation: google.maps.Animation.DROP
+			geocoder.geocode({ "address": address }, function (results, status) {
+				if (status == google.maps.GeocoderStatus.OK) {
+					map.setCenter(results[0].geometry.location);
+				} else {
+					alert("Geocoding was not successful - STATUS: " + status);
+				}
 			});
 
-			var infowindow = new google.maps.InfoWindow({
-				content: element.content
+			var restaurants = [
+				{
+					"lat": 29.519642,
+					"lng": -98.506294,
+					"content": "<h2>The Lion & Rose Restaurant & Pub</h2><p>A place to get delicious British-style food and play Geeks Who Drink pub trivia.</p>"
+				},
+				{
+					"lat": 29.52313,
+					"lng": -98.494712,
+					"content": "<h2>Freebirds World Burrito</h2><p>A place to get a huge burrito. I like to get the midsize burrito with refried beans, chicken fajita meat and veggies.</p>"
+				},
+				{
+					"lat": 29.572055,
+					"lng": -98.324932,
+					"content": "<h2>Orange Leaf Frozen Yogurt</h2><p>A place to get some awesome froyo. My favorite flavor is cheesecake.</p>"
+				}
+			];
+
+			restaurants.forEach(function (element) {
+				
+				var location = { lat: element.lat, lng: element.lng }	
+				
+				var marker = new google.maps.Marker({
+					position: location,
+					map: map,
+					animation: google.maps.Animation.DROP
 				});
 
-			marker.addListener('click', function() {
-				map.setZoom(13);
-				map.setCenter(location);
-				infowindow.open(map, marker);
+				var infowindow = new google.maps.InfoWindow({
+					content: element.content
+					});
+
+				marker.addListener('click', function() {
+					map.setZoom(13);
+					map.setCenter(location);
+					infowindow.open(map, marker);
+				})
 			})
-		})
 
-		reset.addEventListener("click", function reset () {
-			map.setZoom(10);
-		})
+			reset.addEventListener("click", function reset () {
+				map.setZoom(10);
+			})
 
-		zoom5.addEventListener("click", function setZoom5 () {
-			map.setZoom(5);
-		});
+			zoom5.addEventListener("click", function setZoom5 () {
+				map.setZoom(5);
+			});
 
-		zoom15.addEventListener("click", function setZoom15 () {
-			map.setZoom(15);
-		});
+			zoom15.addEventListener("click", function setZoom15 () {
+				map.setZoom(15);
+			});
 
-		zoom20.addEventListener("click", function setZoom20 () {
-			map.setZoom(20);
-		});
+			zoom20.addEventListener("click", function setZoom20 () {
+				map.setZoom(20);
+			});
 
-	})();
+		})();
 
 	</script>
 </body>

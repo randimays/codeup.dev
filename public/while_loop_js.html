@@ -6,56 +6,29 @@
 <body>
 	<script>
 
-		console.log("Ice Cream Problem");
+		// Write a program that generates a random number of ice cream cones for an employee to sell before the end of the day. Generate a random number to represent customer requests, and reduce the remaining cones to sell by the customers' requests.
 
-		var allCones = Math.floor(Math.random() * 50) + 50;
-		var conesRemaining = allCones;
-
-		console.log("I have " + allCones + " cones remaining to sell.");
-
-		do {
-			var cones = Math.floor(Math.random() * 5) + 1;
-		if (cones > conesRemaining) {
-			console.log("Cannot sell you " + cones + " , I only have " + conesRemaining);
-		} else {
-			console.log(cones + " cones sold..." + conesRemaining + " remaining.");
-			conesRemaining = conesRemaining - cones; 
-		}
-		} while (conesRemaining >= 1);
-
-		console.log("Yay! I sold them all!");
-
-		// reworked for practice
-
-		(function(conesRemaining, cones) {
-			conesRemaining = Math.floor(Math.random()*50) + 50;
+		(function() {
+			conesRemaining = Math.floor(Math.random() * 50) + 50;
 			console.log("I have " + conesRemaining + " cones to sell.");
 			var message;
-				do {	
-				cones = Math.floor(Math.random()*5) + 1;
+
+			do {	
+				cones = Math.floor(Math.random() * 5) + 1;
 				if (cones > conesRemaining) {
 					message = "I cannot sell you " + cones + ", I only have " + conesRemaining;
 				} else {
-					conesRemaining = conesRemaining - cones;
+					conesRemaining -= cones;
 					message = cones + " cones sold!";
 				}
 				console.log(message);
-				} while (conesRemaining > 0);
-				if (conesRemaining == 0) {
-					console.log("I've sold all my cones!");
-				}
+			} while (conesRemaining > 0);
+				
+			console.log("I've sold all my cones!");
+
 		})();
 
-		console.log("Number Loop");
-
-		var i = 2;
-
-		while (i <= 65536) {
-			console.log(i);
-			i = i * 2;
-		}
-
-		// reworked for practice
+		// Use JS to create a while loop to produce the following sequence: 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536
 
 		(function() {
 			var i = 2;

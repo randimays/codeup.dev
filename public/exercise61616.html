@@ -18,56 +18,58 @@
 	<tbody id="friends">
 	</tbody>
 </table>
-<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script>
+	<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	<script>
 
-var friends = [
-    {
-    	name: 'Oliver', 
-    	books: ['Ansible for DevOps', 'Servers for hackers']
-    },
-    {
-    	name: 'Barry', 
-    	books: ['Working effectively with unit tests', '50 quick ideas for your tests']
-    },
-    {
-    	name: 'Jessica', 
-    	books: ['Understanding the 4 rules of simple design', 'Principles of package design']
-    },
-    {
-    	name: 'Clark', 
-    	books: ['Selling test driven projects']
-    }
-];
+		"use strict";
 
-var buildTableRows = function (friends) {
-    var table = '';
-    friends.forEach(function (friend)  {
-        table += '<tr><td>' + friend.name + '</td><td>' + friend.books.join(', ') + '</td></tr>';
-    });
-    return table;
-}
+		var friends = [
+			{
+				name: 'Oliver', 
+				books: ['Ansible for DevOps', 'Servers for hackers']
+			},
+			{
+				name: 'Barry', 
+				books: ['Working effectively with unit tests', '50 quick ideas for your tests']
+			},
+			{
+				name: 'Jessica', 
+				books: ['Understanding the 4 rules of simple design', 'Principles of package design']
+			},
+			{
+				name: 'Clark', 
+				books: ['Selling test driven projects']
+			}
+		];
 
-var sortFriendsByName = function(friends) {
-    friends.sort(function (friendA, friendB) {
-        if (friendA.name < friendB.name) {
-            return -1;
-        }
-        if (friendA.name > friendB.name) {
-            return 1;
-        }
-        return 0;
-    });
-};
+		var buildTableRows = function (friends) {
+			var table = '';
+			friends.forEach(function (friend)  {
+				table += '<tr><td>' + friend.name + '</td><td>' + friend.books.join(', ') + '</td></tr>';
+			});
+			return table;
+		}
 
-$("#friends").html(buildTableRows(friends));
+		var sortFriendsByName = function(friends) {
+			friends.sort(function (friendA, friendB) {
+				if (friendA.name < friendB.name) {
+					return -1;
+				}
+				if (friendA.name > friendB.name) {
+					return 1;
+				}
+				return 0;
+			});
+		};
 
-$("#sort").on("click", function() {
-	event.preventDefault();
-    sortFriendsByName(friends);
-    $("#friends").html(buildTableRows(friends));
-});
+		$("#friends").html(buildTableRows(friends));
 
-</script>
+		$("#sort").on("click", function() {
+			event.preventDefault();
+			sortFriendsByName(friends);
+			$("#friends").html(buildTableRows(friends));
+		});
+
+	</script>
 </body>
 </html>

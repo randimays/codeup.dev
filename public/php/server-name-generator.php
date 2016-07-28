@@ -1,5 +1,7 @@
 <?php
 
+// Create two arrays; one should have 10+ adjectives, one should have 10+ nouns. Create a function that will return a random adjective or noun and concatenate to create a random server name.
+
 function pageController() {
 	$data = [];
 

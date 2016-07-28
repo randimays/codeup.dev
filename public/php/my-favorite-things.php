@@ -1,5 +1,7 @@
 <?php
 
+// Create an array of favorite things. Loop through this array and display each element inside the HTML. Add CSS to make it look nice.
+
 function pageController() {
 	$data = [];
 	$data["favoriteThings"] = ["kittens", "the smell of snow", "weddings", "clean things", "a cool day", "ice skating", "fishing", "hiking", "an upbeat playlist", "coding", "web design"];

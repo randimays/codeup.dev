@@ -2,14 +2,19 @@
 
 (function() {
 	var myNameIs = 'Randi'; 
-	function sayHello(myNameIs) {
-	console.log("Hello, " + myNameIs + "!");
-	} sayHello(myNameIs);
-
 	var random = Math.floor((Math.random()*100)+1);
-	console.log("Random number: " + random);
+	
+	function sayHello(myNameIs) {
+		console.log("Hello, " + myNameIs + "!");
+	} 
+
+	sayHello(myNameIs);
+
 	function isOdd(random) {
-	(random % 2 == 1) ? console.log(random + " is odd!") : console.log(random + " is even!");
-	} isOdd(random);
+		console.log((random % 2 == 1) ? random + " is odd!" : random + " is even!");
+	} 
+
+	console.log("Random number: " + random);
+	isOdd(random);
 })();
 

@@ -1,5 +1,7 @@
 <?php
 
+// Create a page with a HIT and Miss button. When you click HIT, the counter should increase and continue the game on Ping's page. If you click MISS, the player missed and the counter resets.
+
 require_once "../../src/Input.php";
 
 function pageController() {

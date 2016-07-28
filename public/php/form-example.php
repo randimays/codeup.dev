@@ -1,4 +1,7 @@
 <?php
+
+// Try injecting some malicious input into the form and see what happens. Update all code where user input is displayed to htmlspecialchars() and strip_tags() to prevent malicious inputs.
+
     $items = array('Item One', 'Item Two', 'Item Three');
     $allItems = array_merge($items, $_POST);
 ?>

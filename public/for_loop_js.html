@@ -5,75 +5,34 @@
 </head>
 <body>
 	<script>
-
-		// question 1
-
-		// var message;
+		"use strict";
+		
+		// Use a for loop to log the following output to the console: 1, 22, 333, 4444, 55555, 666666, 7777777, 88888888, 999999999, 0000000000
 
 		for (var i = 1; i <= 10; i++) {
 			message = "";
-
 			for (var j = 1; j <= i; j++) {
 				if (i == 10) {
 					message = message + 0;
 				} else {
-				message = message + i;
+					message = message + i;
 				}
 			}
 			console.log(message);
 		}
 
-		// changed to a function
+		// Write JS code to log to the console the multiplication table for a random number between 1 and 10. Ex. 7x1=7
 
-		function repeatNumber(number, times) {
-			var message = '';
-
-			for (var j = 1; j <= times; j++) {
-				message = message + (number % 10);
-			} 
-
-			return message;
-		}
-
-		for (var number = 1; number <= 10; number++) {
-			var times = number;
-			var message = repeatNumber(number, times);
-			console.log(message);
-		}
-		
-
-		// question 2
-
-		var randomNumber = Math.floor(Math.random() * 10) + 1;
+		// var randomNumber = Math.floor(Math.random() * 10) + 1;
 
 		for (var i = 1; i <= 10; i++) {
 			console.log(randomNumber + "x" + i + "=" + (randomNumber * i));
 		}
 
-		// changed to a function
-
-		(function multiplyTables(randomNumber, times) { 
-			var randomNumber = Math.floor(Math.random() * 10) + 1;
-			for (var times = 1; times <= 10; times++) {
-				var message = randomNumber + "x" + times + "=" + (randomNumber*times);
-				console.log(message);
-			}
-		})();
-
-		// simplified
-
-		(function () {
-			var randomNumber = Math.floor(Math.random() * 10) + 1;
-
-			for (var i = 1; i <= 10; i++) {
-				console.log(randomNumber + "x" + i + "=" + (randomNumber * i));
-			}
-		})();
-
-		// question 3
+		// Use a for loop and generate 10 random numbers between 20 and 200 and output to the console whether the number is even or odd
 		
 		for (var i = 0; i < 10; i++) {
-			random = Math.floor(Math.random() * 180) + 20;
+			var random = Math.floor(Math.random() * 180) + 20;
 			if (random % 2 == 1) {
 				console.log(random + " is odd");
 			} else if (random % 2 == 0) {
@@ -81,12 +40,11 @@
 			}
 		}
 
-		// question 4
+		// Create a for loop that counts from 100 to 5 in intervals of 5
 
 		for (var i = 100; i >=5; i = i - 5) {
 			console.log(i);
 		}
-
 		
 	</script>
 

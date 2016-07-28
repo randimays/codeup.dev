@@ -4,24 +4,24 @@
 
 // console.log("Grade Problem");
 
-// (function() {
-// 	var grades = [70, 80, 95];
-// 	var sum = 0;
-// 	var average;
-// 	var awesomeGrade = 80;
-// 	var message;
+(function() {
+	var grades = [70, 80, 95];
+	var sum = 0;
+	var average;
+	var awesomeGrade = 80;
+	var message;
 
-// 	for (var i = 0; i < grades.length; i++) {
-// 		sum = sum + grades[i];
-// 	}	average = sum / grades.length;
-// 		if (average >= awesomeGrade) {
-// 			message = "You're awesome!";
-// 		} else {
-// 			message = "You need to practice more.";
-// 		}
+	for (var i = 0; i < grades.length; i++) {
+		sum = sum + grades[i];
+	}	average = sum / grades.length;
+		if (average >= awesomeGrade) {
+			message = "You're awesome!";
+		} else {
+			message = "You need to practice more.";
+		}
 
-// 	console.log(message);
-// })();
+	console.log(message);
+})();
 
 // Refactor this code to interact with the user, using prompt, alert, and confirm where needed.
 // Prompt the user for her name, and the name of the subject.
@@ -29,50 +29,50 @@
 // Use at least one array (it must be part of the object).
 // Make it work for a variable number of grades.
 
-// (function() {
+(function() {
 
-// 	var student = {
-// 		name: '',
-// 		subjects: [],
-// 		addToSubjectsArray: function (subject) {
-// 			this.subjects.push(subject);
-// 			return this.subjects;
-// 		},
-// 		grades: [],
-// 		addToGradesArray: function (grade) {
-// 			this.grades.push(grade);
-// 			return this.grades;
-// 		}, 
-// 		averagedGrades: function () {
-// 			var sumGrades = 0;
-// 			for (var index = 0; index < this.grades.length; index++){
-// 				sumGrades = sumGrades + Number(this.grades[index]);
-// 				}
-// 				var average = sumGrades / this.grades.length;
-// 				return average;
-// 		}
-// 	};
+	var student = {
+		name: '',
+		subjects: [],
+		addToSubjectsArray: function (subject) {
+			this.subjects.push(subject);
+			return this.subjects;
+		},
+		grades: [],
+		addToGradesArray: function (grade) {
+			this.grades.push(grade);
+			return this.grades;
+		}, 
+		averagedGrades: function () {
+			var sumGrades = 0;
+			for (var index = 0; index < this.grades.length; index++){
+				sumGrades = sumGrades + Number(this.grades[index]);
+				}
+				var average = sumGrades / this.grades.length;
+				return average;
+		}
+	};
 
-// 	var awesomeGrade = 80;
-// 	var averageGrade = Math.round(student.averagedGrades());
+	var awesomeGrade = 80;
+	var averageGrade = Math.round(student.averagedGrades());
 
-// 	student.name = prompt('Please enter your name.');
+	student.name = prompt('Please enter your name.');
 	
-// 	do {
-// 		var subjectMessage = prompt('Please enter the subject:');
-// 		student.addToSubjectsArray(subjectMessage);
-// 		var gradeMessage = prompt('Please enter a grade:');
-// 		student.addToGradesArray(gradeMessage);
-// 		var moreGrades = confirm('Do you have more grades?');
-// 	} while (moreGrades);
+	do {
+		var subjectMessage = prompt('Please enter the subject:');
+		student.addToSubjectsArray(subjectMessage);
+		var gradeMessage = prompt('Please enter a grade:');
+		student.addToGradesArray(gradeMessage);
+		var moreGrades = confirm('Do you have more grades?');
+	} while (moreGrades);
 
-// 	if (averageGrade > awesomeGrade) {
-// 		alert(student.name + ", your overall average is " + averageGrade + " which is awesome!");
-// 	} else {
-// 		alert(student.name + ", your overall average is " + averageGrade + " which means you need to study.");
-// 	}
+	if (averageGrade > awesomeGrade) {
+		alert(student.name + ", your overall average is " + averageGrade + " which is awesome!");
+	} else {
+		alert(student.name + ", your overall average is " + averageGrade + " which means you need to study.");
+	}
 
-// })();
+})();
 
 // HEB has an offer for clients that buy products amounting to more than $200. The discount is 35% off the purchase. Cameron bought $180, Ryan bought $250, and George $320. Log each person's total before discount and after discount.
 

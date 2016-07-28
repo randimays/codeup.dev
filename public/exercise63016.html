@@ -46,6 +46,7 @@
 	crossorigin="anonymous">
 </script>
 <script>
+	// Make the search function work
 	var tbody = $('#friends');
 	var sortName = $('#sort');
 	var search = $('#search');
@@ -85,11 +86,13 @@
 		sortFriendsByName(friends);
 		tbody.html(buildTableRows(friends));
 	};
+
 	tbody.html(buildTableRows(friends));
 	search.on('click', function() {
 		var rows = buildTableRows(filterFriendsByName(friends, $('#friend').val()));
 		tbody.html(rows);
 	})
+
 	sortName.on('click', sortTable);
 </script>
 </body>

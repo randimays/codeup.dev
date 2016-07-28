@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	// Use HTML, CSS, jQuery, AJAX, and OpenWeatherMap API to show the current conditions for San Antonio. Update layout/requests to display a three-day forecast. Create an input box for the user to search for a location. Create a map from Google Maps API below your weather forecast. Allow the user to drop a pin on any place on the map and load the weather from that location.
+
 	"use strict";
 
 	var cityName = $("#cityname");

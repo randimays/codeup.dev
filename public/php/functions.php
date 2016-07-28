@@ -1,5 +1,7 @@
 <?php
 
+// Create functions to be used for login exercise
+
 function redirect($location) {
 	header("Location: $location");
 	exit;

@@ -1,3 +1,5 @@
+// Write a program that receives a name, subjects and grades from a student. Calculate the average for the student and tell them whether they are awesome (average above 80) or whether they need to study more. Load the student's name onto the page, and load the subjects and grades into a table.
+
 var student = {
 		awesomeGrade: 80,
 		name: null,

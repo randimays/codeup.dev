@@ -1,5 +1,7 @@
 <?php
 
+// Create a file that has two links: "up" and "down." Add a header that represents the current counter value. Increase the counter on up, do the reverse on down.
+
 	function pageController() {
 
 		$data = [];

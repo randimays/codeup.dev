@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+	// Build a JavaScript calculator. Put your data in three separate input fields. Use one or more click event listeners for your buttons. Bonus: 1) add a decimal point 2) use HTML/CSS to make it pretty 3) consider adding square roots, exponents, trigonometry, etc.
+	
 	"use strict";
 
 	var operatorButtonsArray = $(".operator-btn");

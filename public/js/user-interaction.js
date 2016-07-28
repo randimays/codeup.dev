@@ -1,7 +1,6 @@
 "use strict";
 
-// TODO: Ask the user for their name.
-//       Keep asking if an empty input is provided.
+// TODO: Ask the user for their name. Keep asking if an empty input is provided.
 
 	do {
 		var userName = prompt("What is your name?");
@@ -15,7 +14,7 @@
 
 	var pizza = confirm("Do you like pizza, " + userName + "?");
 
-//       Based on their answer show a creative alert message.
+// TODO: Based on their answer show a creative alert message.
 
 	if (pizza) {
 		alert("High five, " + userName + "!");

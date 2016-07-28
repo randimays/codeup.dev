@@ -17,15 +17,15 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="/js/bootstrap/bootstrap.min.js"></script>
-<script>
+	<script>
 
-$.get("/data/blog.json").done(function(posts){
-	$("#posts").html("");
-	posts.forEach(function(post){
-		$("#posts").append("<h3 class=\"headers\"><hr class=\"rule\"></hr>" + post.title + "</h3><h6 class=\"dates\">" + post.date + "</h6><p class=\"content\">" + post.content + "</p><p class=\"categories\">Categories: " + post.categories.join(", ") + "</p>" + $("#posts").html());
+	$.get("/data/blog.json").done(function(posts){
+		$("#posts").html("");
+		posts.forEach(function(post){
+			$("#posts").append("<h3 class=\"headers\"><hr class=\"rule\"></hr>" + post.title + "</h3><h6 class=\"dates\">" + post.date + "</h6><p class=\"content\">" + post.content + "</p><p class=\"categories\">Categories: " + post.categories.join(", ") + "</p>" + $("#posts").html());
+		})
 	})
-})
 
-</script>
+	</script>
 </body>
 </html>

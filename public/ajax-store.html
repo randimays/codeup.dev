@@ -38,44 +38,39 @@
 <script src="/js/bootstrap/bootstrap.min.js"></script>
 
 <script>
-(function() {
-	"use strict";
-	// TODO: Create an ajax GET request for /data/inventory.json
+	(function() {
+		"use strict";
+		// TODO: Create an ajax GET request for /data/inventory.json. Take the data from inventory.json and append it to the products table. Sort the products alphabetically.
+		
+		var productsTable = $("#insertProducts");
 
-	// TODO: Take the data from inventory.json and append it to the products table
-	
-	var productsTable = $("#insertProducts");
+		function getData() {
+			$.get("/data/inventory.json").done(function fillTable(inventory) {
+				inventory.sort(function (toolA, toolB) {
+			        if (toolA.title < toolB.title) {
+			            return -1;
+			        }
+			        if (toolA.title > toolB.title) {
+			            return 1;
+			        }
+			        return 0;
+			    });
+				productsTable.html("");
+				var productRows = "";
+				inventory.forEach(function(tool) {
+					productRows += "<tr><td>" + tool.title + "</td><td>" + tool.quantity + "</td><td>$" + tool.price + "</td><td>" + tool.categories.join(', ') + "</td></tr>";
+					})
 
-	function getData() {
-		$.get("/data/inventory.json").done(function fillTable(inventory) {
-			inventory.sort(function (toolA, toolB) {
-		        if (toolA.title < toolB.title) {
-		            return -1;
-		        }
-		        if (toolA.title > toolB.title) {
-		            return 1;
-		        }
-		        return 0;
-		    });
-			productsTable.html("");
-			var productRows = "";
-			inventory.forEach(function(tool) {
-				productRows += "<tr><td>" + tool.title + "</td><td>" + tool.quantity + "</td><td>$" + tool.price + "</td><td>" + tool.categories.join(', ') + "</td></tr>";
-				})
+				productsTable.append(productRows);
+				
+				});
+			}
 
-			productsTable.append(productRows);
-			
-			});
-		}
+		$("#refresh").on("click", getData);
+		getData();
 
-	$("#refresh").on("click", getData);
-	getData();
-
-	//       HINT: Your data should come back as a JSON object; use console.log() to inspect
-	//             its contents and fields
-	//       HINT: You will want to target #insertProducts for your new HTML elements
-
-})();
+		// HINT: Your data should come back as a JSON object; use console.log() to inspect its contents and fields. You will want to target #insertProducts for your new HTML elements
+	})();
 </script>
 
 </body>

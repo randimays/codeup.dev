@@ -6,10 +6,6 @@ thead {
 	background-color: lightblue;
 }
 
-/*.table-bordered td, .table-bordered th, table {
-	border-color: cornsilk !important;
-}
-*/
 .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
    background-color: azure;
 }

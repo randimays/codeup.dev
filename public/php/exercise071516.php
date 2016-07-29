@@ -1,5 +1,7 @@
 <?php
 
+// Use PHP within HTML to generate random server names using an array of adjectives and an array of nouns.
+
 function pageController() {
 
 	$adjectives = ['awesome', 'legendary', 'great', 'cool', 'amazing'];

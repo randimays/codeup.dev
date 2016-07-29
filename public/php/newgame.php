@@ -1,4 +1,7 @@
 <?php
+
+// Creates new game for refactored high_low game.
+
 session_start();
 
 function clearSession() {

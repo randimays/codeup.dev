@@ -1,4 +1,7 @@
 <?php
+
+// Refactor highlow exercise using sessions
+
 session_start();
 $random = mt_rand(1, 100);
 $guessCount = 0;

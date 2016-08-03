@@ -1,5 +1,7 @@
 <?php
 
+// Use Sequel Pro to create a new database, user and password. Create a park_migration file that connects to the database and creates a table called national_parks. Populate the table with all national park information for the United States using a file called park_seeder.
+
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'parks_db');
 define('DB_USER', 'parks_user');

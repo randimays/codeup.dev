@@ -2,26 +2,92 @@
 
 // List all national parks from your parks_db database. Each page load should retrieve the parks from the database and display them. Modify the query to load only 4 parks at a time. Add links for pagination and logic to determine whether to show the previous/next links.
 
-function pageController() {
-	
-	define('DB_HOST', '127.0.0.1');
-	define('DB_NAME', 'parks_db');
-	define('DB_USER', 'parks_user');
-	define('DB_PASS', 'parkspassword');
+define('DB_HOST', '127.0.0.1');
+define('DB_NAME', 'parks_db');
+define('DB_USER', 'parks_user');
+define('DB_PASS', 'parkspassword');
 
-	require '../php/db_connect.php';
+require __DIR__ . '/../php/db_connect.php';
+require __DIR__ . '/../src/Input.php';
 
-	$query = "SELECT * FROM national_parks";
-	$stmt = $dbc->query($query);
-
-	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-			$rows[] = $row;
-	}
-	// var_dump($rows);
-	return ['rows' => $rows];
+function getTotalParks (PDO $dbc) {
+	$stmt = $dbc->prepare("SELECT count(*) FROM national_parks");
+	$stmt->execute();
+	return $stmt->fetchColumn();
 }
 
-extract(pageController());
+function getMaxPage ($rowCount, $pageSize) {
+	return ceil($rowCount/$pageSize);
+}
+
+function getCurrentPage ($maxPage) {
+	$currentPage = Input::has('page') ? Input::get('page') : 1;
+
+	if ($currentPage < 1 || !is_numeric($currentPage)) {
+		return 1;
+	} elseif ($currentPage > $maxPage) {
+		return $maxPage;
+	}
+	return $currentPage;
+}
+
+function getOffset ($page, $pageSize) {
+	return ($page - 1) * $pageSize;	
+}
+
+function getLimitedPages (PDO $dbc, $page, $pageSize, $offset) {
+	$stmt = $dbc->prepare("SELECT * FROM national_parks LIMIT :limit OFFSET :offset");
+	$stmt->bindValue(':limit', $pageSize, PDO::PARAM_INT);
+	$stmt->bindValue(':offset', getOffset($page, $pageSize), PDO::PARAM_INT);
+	$stmt->execute();
+	return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function pageController(PDO $dbc) {
+	$pageSize = 4;
+	$rowCount = getTotalParks($dbc);
+	$maxPage = getMaxPage($rowCount, $pageSize);
+	$page = getCurrentPage($maxPage);
+	$parks = getLimitedPages($dbc, $page, $pageSize, getOffset($page, $pageSize));
+
+	// Define variables for user entry form
+	$name = Input::has('name') ? Input::get('name', '') : null;
+	$location = Input::has('location') ? Input::get('location', '') : null;
+	$date = Input::has('date') ? Input::get('date', '') : null;
+	$area = Input::has('area') ? Input::get('area', '') : null;
+	$description = Input::has('description') ? Input::get('description', '') : null;
+
+	// Create & execute query for user entry
+	if (Input::isPost() && $name != null && $location != null && $date != null && $area != null && $description != null) {
+		$query = "INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)";
+		$stmt = $dbc->prepare($query);
+		$stmt->bindValue(':name', $name, PDO::PARAM_STR);
+		$stmt->bindValue(':location', $location, PDO::PARAM_STR);
+		$stmt->bindValue(':date_established', $date, PDO::PARAM_STR);
+		$stmt->bindValue(':area_in_acres', $area, PDO::PARAM_STR);
+		$stmt->bindValue(':description', $description, PDO::PARAM_STR);
+		$stmt->execute();
+	} elseif ($name == null) {
+		$message = "Please enter a valid name.";
+	} elseif ($location == null) {
+		$message = "Please enter a valid location.";
+	} elseif ($date == null) {
+		$message = "Please enter a valid date.";
+	} elseif ($area == null) {
+		$message = "Please enter a valid area.";
+	} elseif ($description == null) {
+		$message = "Please enter a valid description.";
+	}
+
+	return [
+		'parks' => $parks, 
+		'page' => $page, 
+		'maxPage' => $maxPage,
+		'message' => $message
+	];
+}
+
+extract(pageController($dbc));
 
 ?>
 
@@ -30,13 +96,79 @@ extract(pageController());
 <head>
 	<title>National Parks</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<style>
+		h3 {
+			margin-top: 20px;
+			margin-bottom: 20px;
+		}
+
+		hr {
+			margin-top: 35px;
+			margin-bottom: 35px;
+		}
+	</style>
 </head>
 <body>
 
 	<h2 class="text-center">National Parks Database</h2>
-
 	<div class="container">
-		<table class="table table-striped table-bordered table-condensed">
+		<hr>
+		<h3 class="text-center">Add A New Park</h3>
+		<p class="warning"><?= $message ?></p>
+		<form method="post" class="form-horizontal">
+			<div class="form-group">
+				<label for="name" class="col-sm-2 control-label">
+					Park Name
+				</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="name" id="name" placeholder="Name">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="location" class="col-sm-2 control-label">
+					Location
+				</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="location" id="location" placeholder="State">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="date" class="col-sm-2 control-label">
+					Date Established
+				</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="date" id="date" placeholder="YYYY-MM-DD">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="area" class="col-sm-2 control-label">
+					Area (Acres)
+				</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="area" id="area" placeholder="00000.00">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="description" class="col-sm-2 control-label">
+					Description
+				</label>
+				<div class="col-sm-10">
+					<input type="text" class="form-control" name="description" id="description" placeholder="Text description">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-10">
+					<button type="submit" class="btn btn-primary">
+						<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+						</span>
+						Save
+					</button>
+				</div>
+			</div>
+		</form>
+		<hr>
+		<table class="table table-striped table-bordered">
 			<thead>
 				<tr>
 					<th>Number</th>
@@ -44,17 +176,49 @@ extract(pageController());
 					<th>Location</th>
 					<th>Date Established</th>
 					<th>Area (Acres)</th>
+					<th>Description</th>
 				</tr>
 			</thead>
 			<tbody>
-				<?php foreach ($rows as $park) : ?>
+				<?php foreach ($parks as $park) : ?>
 					<tr>
 						<?php foreach ($park as $detail) : ?>
-								<td><?= $detail ?></td>
+							<td><?= $detail ?></td>
 						<?php endforeach; ?>
 					</tr>
 				<?php endforeach; ?>
 			</tbody>
+			<tfoot> <!-- Pagination -->
+				<tr>
+					<td colspan="6">
+						<nav aria-label="Page navigation" class="text-center">
+							<ul class="pagination">
+								<?php if ($page > 1) : ?>
+									<li>
+										<a href="?page=<?= ($page - 1) ?>" aria-label="Previous">
+											<span aria-hidden="true">&laquo;</span>
+										</a>
+									</li>
+								<?php endif; ?>
+
+								<?php for ($i = 1; $i <= $maxPage; $i++) : ?>
+									<li>
+										<a href="?page=<?= $i ?>"><?=$i?></a>
+									</li>
+								<?php endfor; ?>
+
+								<?php if ($page < $maxPage) : ?>
+									<li>
+										<a href="?page=<?= $page + 1?>" aria-label="Next">
+											<span aria-hidden="true">&raquo;</span>
+										</a>
+									</li>
+								<?php endif; ?>
+							</ul>
+						</nav>
+					</td>
+				</tr>
+			</tfoot>
 		</table>
 	</div>
 

@@ -2,13 +2,15 @@
 
 // List all national parks from your parks_db database. Each page load should retrieve the parks from the database and display them. Modify the query to load only 4 parks at a time. Add links for pagination and logic to determine whether to show the previous/next links.
 
+// Update Input.php functions to throw exceptions if the user entry does not fit the proper data type. Add an additional method that returns an instance of the DateTime class and update the code to correctly handle a DateTime object when inserting.
+
 define('DB_HOST', '127.0.0.1');
 define('DB_NAME', 'parks_db');
 define('DB_USER', 'parks_user');
 define('DB_PASS', 'parkspassword');
 
-require __DIR__ . '/../php/db_connect.php';
-require __DIR__ . '/../src/Input.php';
+require '../../php/db_connect.php';
+require '../../src/Input.php';
 
 function getTotalParks (PDO $dbc) {
 	$stmt = $dbc->prepare("SELECT count(*) FROM national_parks");
@@ -51,39 +53,28 @@ function pageController(PDO $dbc) {
 	$parks = getLimitedPages($dbc, $page, $pageSize, getOffset($page, $pageSize));
 
 	// Define variables for user entry form
-	$name = Input::has('name') ? Input::get('name', '') : null;
-	$location = Input::has('location') ? Input::get('location', '') : null;
-	$date = Input::has('date') ? Input::get('date', '') : null;
-	$area = Input::has('area') ? Input::get('area', '') : null;
-	$description = Input::has('description') ? Input::get('description', '') : null;
-
+	$name = Input::getString('name');
+	$location = Input::getString('location');
+	$date = Input::getString('date');
+	$area = Input::getNumber('area');
+	$description = Input::getString('description');
+	
 	// Create & execute query for user entry
-	if (Input::isPost() && $name != null && $location != null && $date != null && $area != null && $description != null) {
+	if (Input::isPost()) {
 		$query = "INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)";
 		$stmt = $dbc->prepare($query);
 		$stmt->bindValue(':name', $name, PDO::PARAM_STR);
 		$stmt->bindValue(':location', $location, PDO::PARAM_STR);
 		$stmt->bindValue(':date_established', $date, PDO::PARAM_STR);
-		$stmt->bindValue(':area_in_acres', $area, PDO::PARAM_STR);
+		$stmt->bindValue(':area_in_acres', $area, PDO::PARAM_INT);
 		$stmt->bindValue(':description', $description, PDO::PARAM_STR);
 		$stmt->execute();
-	} elseif ($name == null) {
-		$message = "Please enter a valid name.";
-	} elseif ($location == null) {
-		$message = "Please enter a valid location.";
-	} elseif ($date == null) {
-		$message = "Please enter a valid date.";
-	} elseif ($area == null) {
-		$message = "Please enter a valid area.";
-	} elseif ($description == null) {
-		$message = "Please enter a valid description.";
 	}
 
 	return [
 		'parks' => $parks, 
 		'page' => $page, 
-		'maxPage' => $maxPage,
-		'message' => $message
+		'maxPage' => $maxPage
 	];
 }
 
@@ -114,7 +105,6 @@ extract(pageController($dbc));
 	<div class="container">
 		<hr>
 		<h3 class="text-center">Add A New Park</h3>
-		<p class="warning"><?= $message ?></p>
 		<form method="post" class="form-horizontal">
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">

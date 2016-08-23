@@ -23,7 +23,7 @@ function getMaxPage ($rowCount, $pageSize) {
 }
 
 function getCurrentPage ($maxPage) {
-	$currentPage = Input::has('page') ? Input::get('page') : 1;
+	$currentPage = Input::getString('page');
 
 	if ($currentPage < 1 || !is_numeric($currentPage)) {
 		return 1;
@@ -51,30 +51,92 @@ function pageController(PDO $dbc) {
 	$maxPage = getMaxPage($rowCount, $pageSize);
 	$page = getCurrentPage($maxPage);
 	$parks = getLimitedPages($dbc, $page, $pageSize, getOffset($page, $pageSize));
+	$errors = null;
+	$name = "";
+	$location = "";
+	$date = "";
+	$area = "";
+	$description = "";
 
 	// Define variables for user entry form
-	$name = Input::getString('name');
-	$location = Input::getString('location');
-	$date = Input::getString('date');
-	$area = Input::getNumber('area');
-	$description = Input::getString('description');
-	
-	// Create & execute query for user entry
 	if (Input::isPost()) {
-		$query = "INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)";
-		$stmt = $dbc->prepare($query);
-		$stmt->bindValue(':name', $name, PDO::PARAM_STR);
-		$stmt->bindValue(':location', $location, PDO::PARAM_STR);
-		$stmt->bindValue(':date_established', $date, PDO::PARAM_STR);
-		$stmt->bindValue(':area_in_acres', $area, PDO::PARAM_INT);
-		$stmt->bindValue(':description', $description, PDO::PARAM_STR);
-		$stmt->execute();
+
+		try {
+			$name = Input::getString('name');
+		} catch (InvalidArgumentException $e) {
+			$errors[] = $e->getMessage();
+		} catch (OutOfRangeException $e) {
+			$errors[] = $e->getMessage();
+		} catch (DomainException $e) {
+			$errors[] = $e->getMessage();
+		} catch (LengthException $e) {
+			$errors[] = $e->getMessage();
+		}
+
+		try {
+			$location = Input::getString('location');
+		} catch (InvalidArgumentException $e) {
+			$errors[] = $e->getMessage();
+		} catch (OutOfRangeException $e) {
+			$errors[] = $e->getMessage();
+		} catch (DomainException $e) {
+			$errors[] = $e->getMessage();
+		} catch (LengthException $e) {
+			$errors[] = $e->getMessage();
+		}
+
+		try {
+			$date = Input::getDate('date');
+		} catch (Exception $e) {
+			$errors[] = $e->getMessage();
+		}
+
+		try {
+			$area = Input::getNumber('area');
+		} catch (InvalidArgumentException $e) {
+			$errors[] = $e->getMessage();
+		} catch (OutOfRangeException $e) {
+			$errors[] = $e->getMessage();
+		} catch (DomainException $e) {
+			$errors[] = $e->getMessage();
+		} catch (RangeException $e) {
+			$errors[] = $e->getMessage();
+		}
+
+		try {
+			$description = Input::getString('description');
+		} catch (InvalidArgumentException $e) {
+			$errors[] = $e->getMessage();
+		} catch (OutOfRangeException $e) {
+			$errors[] = $e->getMessage();
+		} catch (DomainException $e) {
+			$errors[] = $e->getMessage();
+		} catch (LengthException $e) {
+			$errors[] = $e->getMessage();
+		}
+
+		if (count($errors) == 0) {
+			$query = "INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)";
+			$stmt = $dbc->prepare($query);
+			$stmt->bindValue(':name', $name, PDO::PARAM_STR);
+			$stmt->bindValue(':location', $location, PDO::PARAM_STR);
+			$stmt->bindValue(':date_established', $date->format('Y-m-d'), PDO::PARAM_STR);
+			$stmt->bindValue(':area_in_acres', $area, PDO::PARAM_INT);
+			$stmt->bindValue(':description', $description, PDO::PARAM_STR);
+			$stmt->execute();
+		}	
 	}
 
 	return [
 		'parks' => $parks, 
 		'page' => $page, 
-		'maxPage' => $maxPage
+		'maxPage' => $maxPage,
+		'errors' => $errors,
+		'name' => $name,
+		'location' => $location,
+		'date' => $date,
+		'area' => $area,
+		'description' => $description
 	];
 }
 
@@ -97,6 +159,11 @@ extract(pageController($dbc));
 			margin-top: 35px;
 			margin-bottom: 35px;
 		}
+
+		.warning {
+			color: red;
+			list-style:  none;
+		}
 	</style>
 </head>
 <body>
@@ -105,13 +172,20 @@ extract(pageController($dbc));
 	<div class="container">
 		<hr>
 		<h3 class="text-center">Add A New Park</h3>
+			<ul>
+				<?php if ($errors) : ?>
+					<?php foreach ($errors as $error) : ?>
+						<li class="warning text-center"><?= $error ?></li>
+					<?php endforeach; ?>
+				<?php endif; ?>
+			</ul>
 		<form method="post" class="form-horizontal">
 			<div class="form-group">
 				<label for="name" class="col-sm-2 control-label">
 					Park Name
 				</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="name" id="name" placeholder="Name">
+					<input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?= $name ?>">
 				</div>
 			</div>
 			<div class="form-group">
@@ -119,7 +193,7 @@ extract(pageController($dbc));
 					Location
 				</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="location" id="location" placeholder="State">
+					<input type="text" class="form-control" name="location" id="location" placeholder="State" value="<?= $location ?>">
 				</div>
 			</div>
 			<div class="form-group">
@@ -127,7 +201,7 @@ extract(pageController($dbc));
 					Date Established
 				</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="date" id="date" placeholder="YYYY-MM-DD">
+					<input type="text" class="form-control" name="date" id="date" placeholder="YYYY-MM-DD" value="<?= is_string($date) ? $date : $date->format('Y-m-d') ?>">
 				</div>
 			</div>
 			<div class="form-group">
@@ -135,7 +209,7 @@ extract(pageController($dbc));
 					Area (Acres)
 				</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="area" id="area" placeholder="00000.00">
+					<input type="text" class="form-control" name="area" id="area" placeholder="00000.00" value="<?= $area ?>">
 				</div>
 			</div>
 			<div class="form-group">
@@ -143,7 +217,7 @@ extract(pageController($dbc));
 					Description
 				</label>
 				<div class="col-sm-10">
-					<input type="text" class="form-control" name="description" id="description" placeholder="Text description">
+					<input type="text" class="form-control" name="description" id="description" placeholder="Text description" value="<?= $description ?>">
 				</div>
 			</div>
 			

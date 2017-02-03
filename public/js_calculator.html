@@ -4,66 +4,55 @@
 	<title>JavaScript Calculator</title>
 	<meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
-	<link href="css/bootstrap/bootstrap.css" rel="stylesheet">
+	<!-- <link href="css/bootstrap/bootstrap.css" rel="stylesheet"> -->
 	<link href="css/calculator.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-	<h1 id="header" class="text-center">JavaScript Calculator</h1>
+	<h1>JavaScript Calculator</h1>
 
 	<div id="container">
-	
+		<textarea id="screen" maxlength="22" readonly></textarea>
+
 		<div class="row">
-			<div id="inputs" class="text-center">
-				<input id="leftBox" maxlength="11" readonly>
-				<input id="centerBox" maxlength="1" readonly>
-				<input id="rightBox" maxlength="11" readonly>
-			</div>
+			<input id="clearbtn" class="clearColor" value="C" readonly>
+			<input id="exponentbtn" class="operator-btn" value="^" readonly disabled>
+			<input id="sqrtbtn" value="&radic;" readonly disabled>
+			<input id="dividebtn" class="operator-btn colorOperators" value="/" readonly disabled>
 		</div>
 
-		<div id="groupBtns">
-		
-			<div class="row text-center">
-				<input id="clearbtn" class="clearColor" value="C" readonly>
-				<input id="exponentbtn" class="operator-btn" value="^" readonly disabled>
-				<input id="sqrtbtn" value="&radic;" readonly disabled>
-				<input id="dividebtn" class="operator-btn colorOperators" value="/" readonly disabled>
-			</div>
+		<div class="row">
+			<input class="number-btn" value="7" readonly>
+			<input class="number-btn" value="8" readonly>
+			<input class="number-btn" value="9" readonly>
+			<input id="multiplybtn" class="operator-btn colorOperators" value="*" readonly disabled>
+		</div>
 
-			<div class="row text-center">
-				<input class="number-btn" value="7" readonly>
-				<input class="number-btn" value="8" readonly>
-				<input class="number-btn" value="9" readonly>
-				<input id="multiplybtn" class="operator-btn colorOperators" value="*" readonly disabled>
-			</div>
+		<div class="row">
+			<input class="number-btn" value="4" readonly>
+			<input class="number-btn" value="5" readonly>
+			<input class="number-btn" value="6" readonly>
+			<input id="minusbtn" class="operator-btn colorOperators" value="-" readonly disabled>
+		</div>
 
-			<div class="row text-center">
-				<input class="number-btn" value="4" readonly>
-				<input class="number-btn" value="5" readonly>
-				<input class="number-btn" value="6" readonly>
-				<input id="minusbtn" class="operator-btn colorOperators" value="-" readonly disabled>
-			</div>
+		<div class="row">
+			<input class="number-btn" value="1" readonly>
+			<input class="number-btn" value="2" readonly>
+			<input class="number-btn" value="3" readonly>
+			<input id="plusbtn" class="operator-btn colorOperators" value="+" readonly disabled>
+		</div>
 
-			<div class="row text-center">
-				<input class="number-btn" value="1" readonly>
-				<input class="number-btn" value="2" readonly>
-				<input class="number-btn" value="3" readonly>
-				<input id="plusbtn" class="operator-btn colorOperators" value="+" readonly disabled>
-			</div>
-
-			<div class="row text-center">
-				<input id="posnegbtn" class="posnegColor" value="+/-" readonly>
-				<input class="number-btn" value="0" readonly>
-				<input id="decimalbtn" value="." readonly>
-				<input id="equalsbtn" class="equalsColor" value="=" readonly>
-			</div>
-
+		<div class="row">
+			<input id="posnegbtn" class="posnegColor" value="+/-" readonly>
+			<input class="number-btn" value="0" readonly>
+			<input id="decimalbtn" value="." readonly>
+			<input id="equalsbtn" class="equalsColor" value="=" readonly>
 		</div>
 
 	</div>
 
-<!-- 	JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="js/calculator.js"></script>
+	<!-- 	JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="js/calculator.js"></script>
 
 </body>
 </html>

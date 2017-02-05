@@ -2,10 +2,13 @@
 	box-sizing: border-box;
 }
 
-body {
-	font-family: "Inconsolata", sans-serif;
-	font-size: 16px;
+html {
 	background: url("../img/brillant.png") repeat;
+}
+
+body, input {
+	font-family: "Inconsolata", Arial, sans-serif;
+	font-size: 16px;
 }
 
 #container {
@@ -35,7 +38,7 @@ h1 {
 	resize: none;
 }
 
-.row input {
+.btn {
 	width: 100px;
 	height: 45px;
 	background-color: #403b3b;
@@ -65,22 +68,22 @@ h1 {
 	font-size: .65em;
 }
 
-#groupBtns .colorOperators {
+.operator {
 	background-color: #c84c1b;
 	border: 2px #f49232 solid;
 }
 
-#groupBtns .clearColor {
+.clear {
 	background-color: #b12828;
 	border: 2px #f43232 solid;
 }
 
-#groupBtns .equalsColor {
+.equals {
 	background-color: #369f21;
 	border: 2px #26d44b solid;
 }
 
-#groupBtns .posnegColor {
+.sign-btn {
 	background-color: #6078bf;
 	border: 2px #7e86f2 solid;
 

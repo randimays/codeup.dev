@@ -4,7 +4,6 @@
 	<title>JavaScript Calculator</title>
 	<meta charset="utf-8">
 	<link href='https://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
-	<!-- <link href="css/bootstrap/bootstrap.css" rel="stylesheet"> -->
 	<link href="css/calculator.css" type="text/css" rel="stylesheet">
 </head>
 <body>
@@ -14,38 +13,37 @@
 		<textarea id="screen" maxlength="22" readonly></textarea>
 
 		<div class="row">
-			<input id="clearbtn" class="clearColor" value="C" readonly>
-			<input id="exponentbtn" class="operator-btn" value="^" readonly disabled>
-			<input id="sqrtbtn" value="&radic;" readonly disabled>
-			<input id="dividebtn" class="operator-btn colorOperators" value="/" readonly disabled>
+			<input id="clearbtn" class="btn clear" value="C" readonly>
+			<input id="exponentbtn" class="btn operator" value="^" readonly disabled>
+			<input id="sqrtbtn" class="btn operator" value="&radic;" readonly disabled>
+			<input id="dividebtn" class="btn operator" value="/" readonly disabled>
 		</div>
 
 		<div class="row">
-			<input class="number-btn" value="7" readonly>
-			<input class="number-btn" value="8" readonly>
-			<input class="number-btn" value="9" readonly>
-			<input id="multiplybtn" class="operator-btn colorOperators" value="*" readonly disabled>
+			<input class="btn number-btn" value="7" readonly>
+			<input class="btn number-btn" value="8" readonly>
+			<input class="btn number-btn" value="9" readonly>
+			<input id="multiplybtn" class="btn operator" value="*" readonly disabled>
 		</div>
 
 		<div class="row">
-			<input class="number-btn" value="4" readonly>
-			<input class="number-btn" value="5" readonly>
-			<input class="number-btn" value="6" readonly>
-			<input id="minusbtn" class="operator-btn colorOperators" value="-" readonly disabled>
+			<input class="btn number-btn" value="4" readonly>
+			<input class="btn number-btn" value="5" readonly>
+			<input class="btn number-btn" value="6" readonly>
+			<input id="minusbtn" class="btn operator" value="-" readonly disabled>
+		</div>
+		<div class="row">
+			<input class="btn number-btn" value="1" readonly>
+			<input class="btn number-btn" value="2" readonly>
+			<input class="btn number-btn" value="3" readonly>
+			<input id="plusbtn" class="btn operator" value="+" readonly disabled>
 		</div>
 
 		<div class="row">
-			<input class="number-btn" value="1" readonly>
-			<input class="number-btn" value="2" readonly>
-			<input class="number-btn" value="3" readonly>
-			<input id="plusbtn" class="operator-btn colorOperators" value="+" readonly disabled>
-		</div>
-
-		<div class="row">
-			<input id="posnegbtn" class="posnegColor" value="+/-" readonly>
-			<input class="number-btn" value="0" readonly>
-			<input id="decimalbtn" value="." readonly>
-			<input id="equalsbtn" class="equalsColor" value="=" readonly>
+			<input id="signBtn" class="btn sign-btn" value="+/-" readonly>
+			<input class="btn" value="0" readonly>
+			<input id="decimalbtn" class="btn" value="." readonly>
+			<input id="equalsbtn" class="btn equals" value="=" readonly>
 		</div>
 
 	</div>
